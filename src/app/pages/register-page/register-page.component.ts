@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit {
-
+  imageURL: string="";
   registerForm: FormGroup = new FormGroup({})
 
   constructor(private formBuilder: FormBuilder, private router: Router) { }
@@ -31,7 +31,14 @@ export class RegisterPageComponent implements OnInit {
   get phoneArray(): FormArray{
     return this.registerForm.get('phones') as FormArray
   }
+  // Image Preview
+  showPreview(event:any) {
+    this.imageURL=event.target.files[0].name;
 
+    this.registerForm.setValue({file: this.imageURL})
+    console.log()
+
+  }
 
 
   // Submit
