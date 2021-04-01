@@ -10,14 +10,14 @@
 
 
 
-<table class="table table-responsive table-bordered" border="1">
+<table class="table table-responsive table-bordered " border="1">
     <thead>
         <tr>
             <th>Id</th>
             <th>Primer Apellido</th>
             <th>Segundo Apellido</th>
             <th>Email</th>
-            <th>Phone</th>
+            <th>Avatar</th>
 
         </tr>
     </thead>
@@ -27,7 +27,7 @@
             <td>{{contact.first_name}}</td>
             <td>{{contact.last_name}}</td>
             <td>{{contact.email}}</td>
-            <td>{{contact.avatar}}</td>
+            <img src="{{contact.avatar}}" />
             <td><button mat-raised-button color="primary" routerLink='/contacts/{{contact.id}}' [state]="contact">Go to Detail</button></td>
         </tr>
     </tbody>
