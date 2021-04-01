@@ -1,0 +1,49 @@
+<h1>Todos</h1>
+<button mat-raised-button color="primary" routerLink='/home'>Go Back Home</button>
+
+
+<div id="addTarea">
+    <h1>Listado de tareas</h1>
+    <div class="mt-2 mb-2">Formulario</div>
+    <div class="input-group">
+        <input class="form-control" type="text" value="" [(ngModel)]="titulo" />
+        <input class="form-control" type="text" value="" [(ngModel)]="descripcion" />
+        <input class="form-control" type="number" value="" [(ngModel)]="urgencia" />
+        <input class="form-control" type="text" value="" [(ngModel)]="responsable" />
+        <input class="form-control" type="date" value="" [(ngModel)]="fechaInicio" />
+        <input class="form-control" type="date" value="" [(ngModel)]="fechaFin" />
+        <div class="input-group-append">
+            <button mat-raised-button color="primary" class="btn btn-primary" (click)="crearTarea()">
+        Crear tarea
+      </button>
+        </div>
+    </div>
+</div>
+
+<div cdkDropListGroup id="listas">
+
+
+
+    <div cdkDropList [cdkDropListData]="backLogList" class="example-list " (cdkDropListDropped)="drop($event)">
+        <app-todo class="list-group-item example-box" *ngFor="let tarea of backLogList" [tarea]="tarea" cdkDrag></app-todo>
+    </div>
+
+
+
+
+
+    <div cdkDropList [cdkDropListData]="todoList" class="example-list" (cdkDropListDropped)="drop($event)">
+        <app-todo class="list-group-item example-box" *ngFor="let tarea of todoList" [tarea]="tarea" cdkDrag></app-todo>
+
+    </div>
+
+
+
+
+
+
+    <div cdkDropList [cdkDropListData]="doneList" class="example-list " (cdkDropListDropped)="drop($event)">
+        <app-todo class="list-group-item example-box" *ngFor="let tarea of doneList" [tarea]="tarea" cdkDrag></app-todo>
+    </div>
+
+</div>

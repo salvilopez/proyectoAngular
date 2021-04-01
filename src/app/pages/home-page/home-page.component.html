@@ -1,0 +1,19 @@
+<div>
+    <h2>Email: {{email}}</h2>
+</div>
+
+<div id="mainHome">
+    <h1>
+        Home Page
+    </h1>
+
+    <!-- Navigate to Contacts -->
+    <button mat-raised-button color="primary" routerLink='/contacts'>Go to Contacts</button>
+
+
+    <!-- Navigate to Todos -->
+    <button mat-raised-button color="warn" routerLink='/todos'>Go to Todos</button>
+
+
+    <button mat-raised-button color="primary" (click)="logout()">logout</button>
+</div>

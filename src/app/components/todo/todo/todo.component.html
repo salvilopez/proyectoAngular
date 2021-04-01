@@ -1,0 +1,17 @@
+<!--Bloque cuyo atributo de color de fondo
+viene definido por lo que devuelva el metodo del componente getColor()-->
+<div [style.background]="getColor()" class="alert">
+    <div>
+        <div>
+            <!--Mensaje de la tarea-->
+            <div>{{ tarea.titulo }}</div>
+            <!--Mensaje de la tarea-->
+            <div>{{ tarea.descripcion }}</div>
+            <!--Fecha de Inicio-->
+            <div>Fecha de Inicio : {{ tarea.fechaInicio| date}}</div>
+            <!--Fecha Final-->
+            <div>Fecha Final : {{ tarea.fechaFin| date}}</div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<h1>Contact List</h1>
+
+<!-- TODO: Our List Component -->
+
+
+<!-- Button to show Example of Navigation to Contact Detail -->
+
+<button mat-raised-button color="primary" routerLink='/home'>Go Back Home</button>
+
+
+
+
+<table class="table table-responsive table-bordered" border="1">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Email</th>
+            <th>Phone</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contact of contactList">
+            <td>{{contact.id}}</td>
+            <td>{{contact.first_name}}</td>
+            <td>{{contact.last_name}}</td>
+            <td>{{contact.email}}</td>
+            <td>{{contact.avatar}}</td>
+            <td><button mat-raised-button color="primary" routerLink='/contacts/{{contact.id}}' [state]="contact">Go to Detail</button></td>
+        </tr>
+    </tbody>
+</table>

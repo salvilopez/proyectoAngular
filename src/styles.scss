@@ -1,0 +1,17 @@
+body {
+    background-color: greenyellow;
+    // background: rgb(235, 55, 228);
+    //  background: linear-gradient(90deg, rgba(235, 55, 228, 1) 0%, rgba(235, 55, 228, 1) 15%, rgba(115, 0, 255, 1) 78%);
+    background: rgb(235, 55, 228);
+    background: radial-gradient(circle, rgba(235, 55, 228, 1) 0%, rgba(235, 55, 228, 1) 15%, rgb(98, 61, 218) 78%);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
