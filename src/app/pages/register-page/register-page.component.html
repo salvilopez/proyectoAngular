@@ -1,25 +1,27 @@
-<h1>Register Page : </h1>
+<main>
+    <h1>Register Page : </h1>
 
-<!-- Register Form -->
-<div id="idRegistro">
+    <!-- Register Form -->
+    <div id="idRegistro">
 
-    <h4>{{ registerForm.value | json }}</h4>
+        <!--   <h4>{{ registerForm.value | json }}</h4>-->
 
-    <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
-        <mat-form-field>
-            <input matInput placeholder="Email" formControlName="email" />
-        </mat-form-field>
+        <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
+            <mat-form-field>
+                <input matInput placeholder="Email" formControlName="email" />
+            </mat-form-field>
 
-        <mat-form-field>
-            <input matInput placeholder="Password" formControlName="password" />
-        </mat-form-field>
-        <div>
-            <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">
+            <mat-form-field>
+                <input matInput placeholder="Password" formControlName="password" />
+            </mat-form-field>
+            <div>
+                <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">
         Register
       </button>
-            <button mat-raised-button color="warning" [routerLink]="['/login']">
+                <button mat-raised-button color="warning" [routerLink]="['/login']">
         Go To Login Page
       </button>
-        </div>
-    </form>
-</div>
+            </div>
+        </form>
+    </div>
+</main>

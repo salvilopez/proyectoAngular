@@ -1,6 +1,6 @@
 <h1>Todos</h1>
 <button mat-raised-button color="primary" routerLink='/home'>Go Back Home</button>
-<main class="container">
+<main>
     <h1>Listado de tareas</h1>
     <div id="addTarea" class="input-group">
         <h2>Crearción de Nueva Tarea</h2>
@@ -28,7 +28,7 @@
             <label for="finishdate">Finishdate : </label>
             <input class="form-control" type="date" [(ngModel)]="fechaFin" placeholder="Finish date" name="finishdate" />
         </div>
-        <button mat-raised-button color="primary" class="btn btn-primary" (click)="crearTarea()">Crear tarea</button>
+        <button mat-raised-button color="primary" (click)="crearTarea()">Crear tarea</button>
     </div>
     <div cdkDropListGroup id="listas">
         <div cdkDropList [cdkDropListData]="urgencia1List" class="example-list" id="urgencia1" (cdkDropListDropped)="drop($event)">

@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Contact } from 'src/app/models/contact/contact.model';
 
 
 @Component({
