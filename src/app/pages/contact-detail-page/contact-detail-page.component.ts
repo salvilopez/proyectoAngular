@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact/contact.model';
 import { Subscription } from 'rxjs';
+import { ContactResponsePut } from 'src/app/models/contactResponse/contact-response-put.model';
+//import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-contact-detail-page',
   templateUrl: './contact-detail-page.component.html',
@@ -12,13 +14,15 @@ import { Subscription } from 'rxjs';
 })
 export class ContactDetailPageComponent implements OnInit {
   // ID of the Contact, that comes from the URL Parms
+  contactResponse: any={}
   idContact: string = '';
-  contact :any={};
+  contact :Contact=new Contact("","","","");
   archivoCapturado: any;
   imagebase64: any;
   imagebase64Json: string = '';
   updateForm: FormGroup = new FormGroup({});
   authSubscription: Subscription = new Subscription();
+  actuali:Boolean=false;
   /**
    * Constructor
    * @param activatedRoute --> The Active Route in that moment
@@ -29,11 +33,11 @@ export class ContactDetailPageComponent implements OnInit {
     private location: Location,
     private formBuilder: FormBuilder,
     private router: Router,
-    private contactService: ContactService
+    private contactService: ContactService,
+  //  private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    console.log(this.contact);
     this.activatedRoute.params.subscribe((params) => {
       if (params.id) {
         this.idContact = params.id;
@@ -43,92 +47,61 @@ export class ContactDetailPageComponent implements OnInit {
       }
     });
 
-    // We obtain the contact
-
-    if (this.location.getState()) {
-      this.contact = this.location.getState();
+    if(this.actuali==true){
+      alert("aqui tmb")
+      this.contact.avatar= JSON.parse(this.contactResponse.avatar)
+      this.contact.first_name= this.contactResponse.first_name
+      this.contact.last_name= this.contactResponse.last_name
+      this.contact.id= this.contactResponse.id
+      this.contact.email= this.contactResponse.email
     }
-    console.log('-------------------------------------');
-    console.log(this.contact as Contact);
-
+    if (this.location.getState()&&this.actuali==false) {
+      alert("aqui")
+      this.contact = this.location.getState() as Contact;
+      this.actuali=true;
+    }
     this.updateForm = this.formBuilder.group({
-      avatar: [''],
-      email: ['', Validators.email],
-      first_name: [''],
-      last_name: [''],
+      avatar: [this.contact.avatar],
+      email: [this.contact.email, Validators.email],
+      first_name: [this.contact.first_name],
+      last_name: [this.contact.last_name],
     });
   }
 
   update() {
-    if(this.updateForm.value.email!=null){
-      this.contact.email=this.updateForm.value.email;
-    }
-
-    if(this.imagebase64!=null){
-      this.contact.avatar=this.imagebase64Json;
-    }
-    if(this.updateForm.value.first_name!=null){
-      this.contact.first_name=this.updateForm.value.first_name;
-    }
-    if(this.updateForm.value.last_name!=null){
-      this.contact.last_name=this.updateForm.value.last_name;
-    }
-
-    console.table(this.contact)
-
-    this.contactService.updateContact(this.contact);
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-this.authSubscription = this.contactService.updateContact(this.contact)
-.subscribe((response) => {
-  if(response.token){
-    console.log(`Token: ${response}`);
-
-  }
-},(error)=> {
-  console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
-
-  alert('Error '+error.status+' Fallo en el Login, No llego el Token de respuesta' );
-
-});
+    this.location.replaceState("/contacts/"+this.contact.id);
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////////////////////////////
-
-
+    this.authSubscription = this.contactService.updateContact(this.contact)
+        .subscribe((response) => {
+          this.contactResponse= response as ContactResponsePut;
+            console.log( this.contactResponse)
+           // this.openSnackBar("dato actualizado correctamente","hijo Puta");
+        },(error)=> {
+            console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
+            alert('Error '+error.status+' Fallo en el Login, No llego el Token de respuesta' );
+        });
     this.router.navigateByUrl("/contacts/"+this.idContact, {state:this.contact});
-
-
-
   }
+
   showPreview(event: any) {
-    this.archivoCapturado = event.target.files[0];
+   /* this.archivoCapturado = event.target.files[0];
     this.contactService
       .extraerBase64(this.archivoCapturado)
       .then((imagen: any) => {
         this.imagebase64 = imagen.base;
         this.contact.avatar = imagen.base;
-      });
+      });*/
   }
-
+  /*openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }*/
   returnBack() {
     // 1.
     // this.router.navigate(['/contacts']);

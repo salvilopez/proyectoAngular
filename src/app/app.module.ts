@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './views/list/list.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -32,7 +31,6 @@ import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.com
     AppComponent,
     ListComponent,
     ContactComponent,
-    LoginFormComponent,
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
@@ -60,7 +58,7 @@ import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.com
     FormsModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
