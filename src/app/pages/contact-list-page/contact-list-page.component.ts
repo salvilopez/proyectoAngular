@@ -17,12 +17,7 @@ export class ContactListPageComponent implements OnInit {
   // Example to Navigate to Contact Detail passing a 3 as the ID
   // And passing a Contact through navigation
   id: number = 3;
-  contact: Contact = new Contact(
-    'Martín',
-    'San José',
-    'martin@imaginagroup.com',
-    '45677754432'
-  );
+  contact: Contact = new Contact('','','','');
 
   constructor(private contactService: ContactService) {}
 
@@ -37,7 +32,6 @@ export class ContactListPageComponent implements OnInit {
       (err) => console.log('Error',err)
     );
 
-    console.log(this.contactList[1]);
   }
 }
 

@@ -58,7 +58,7 @@ import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.com
     FormsModule,
     DragDropModule
   ],
-  providers: [AngularFirestore],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

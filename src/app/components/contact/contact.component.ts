@@ -9,8 +9,8 @@ import { Contact } from 'src/app/models/contact/contact.model';
 export class ContactComponent implements OnInit {
 
   // Contacto to be shown by the component
-  @Input() contact: Contact = new Contact('', '', '', '');
-
+ // @Input() contact: Contact = new Contact('', '', '', '');
+@Input() contactList:Contact[]=[]
 
 
   constructor() { }

@@ -3,30 +3,31 @@
 <div>
 
 
-    <form [formGroup]="updateForm" (submit)="update()">
-        <div>
-            <img src="{{contact.avatar}}" /><input type="file" accept="image/*" (change)="showPreview($event)" formControlName="avatar" />
-        </div>
-        <div>
-            <label for="email"> Email</label>
-            <mat-form-field>
-                <input matInput formControlName="email" placeholder="{{contact.email}}" />
-            </mat-form-field>
-        </div>
-
+    <div>
+        <img src="{{contact.avatar}}" /><input type="file" accept="image/*" (change)="showPreview($event)" [(ngModel)]="contact.avatar" />
+    </div>
+    <div>
+        <label for="email"> Email</label>
         <mat-form-field>
-            <input matInput formControlName="first_name" placeholder="{{contact.first_name}}" />
+            <input matInput name="email" [(ngModel)]="contact.email" />
         </mat-form-field>
-
+    </div>
+    <div>
+        <label for="first_name"> First Name</label>
         <mat-form-field>
-            <input matInput formControlName="last_name" placeholder="{{contact.last_name}}" />
+            <input matInput name="first_name" [(ngModel)]="contact.first_name" />
         </mat-form-field>
+    </div>
+    <div>
+        <label for="last_name"> Last Name</label>
+        <mat-form-field>
+            <input matInput name="last_name" [(ngModel)]="contact.last_name" />
+        </mat-form-field>
+    </div>
 
-
-        <button [disabled]="updateForm.invalid" mat-raised-button color="primary" type="submit">
+    <button mat-raised-button color="primary" type="submit" (click)="update()">
       update
     </button>
-    </form>
 
     <button mat-raised-button color="warning" (click)="returnBack()">
       Go Back to Contacts

@@ -82,7 +82,7 @@ export class ContactService {
     let body = {
       id:  contact.id,
       email:  contact.email,
-      avatar:   contact.avatar,
+      avatar:   JSON.stringify(contact.avatar),
       first_name:   contact.first_name,
       last_name:   contact.last_name,
 
