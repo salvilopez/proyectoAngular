@@ -1,48 +1,88 @@
-#listas {
-    margin: 10%;
-    margin-top: 5%;
-    width: 40%;
-    display: flex;
-    flex-direction: row;
-}
-
-#listas div {
-    background-color: white;
-    min-width: 15%;
-    max-width: 80%;
-    min-height: 400px;
-    border: 2px solid purple;
-}
-
-.example-list {
-    width: 500px;
-    max-width: 100%;
-    border: solid 1px #ccc;
-    min-height: 60px;
-    display: block;
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.cdk-drag-placeholder {
-    opacity: 0;
-}
-
-.cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.example-box:last-child {
-    border: none;
-}
-
-.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
+    #listas div {
+        background-color: white;
+        min-width: 200px;
+        max-width: 80%;
+        min-height: 400px;
+        border: 2px solid purple;
+    }
+    
+    #listas {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between
+    }
+    
+    .content {
+        width: 100%;
+        margin: 0%;
+        display: block;
+    }
+    
+    #addTarea {
+        max-width: 400px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 30px;
+        color: black;
+        background-color: white;
+        opacity: 0.5;
+    }
+    
+    #addTarea div {
+        width: 100%;
+        opacity: 1;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    #addTarea div {
+        width: 100%;
+        opacity: 1;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    
+    #urgencia1 {
+        background: url("../../../assets/img/1.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    #urgencia2 {
+        background: url("../../../assets/img/2.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    #urgencia3 {
+        background: url("../../../assets/img/3.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    #urgencia4 {
+        background: url("../../../assets/img/4.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    #urgencia5 {
+        background: url("../../../assets/img/5.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    .example-box {
+        cursor: move;
+        box-sizing: border-box;
+        box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 20px 1px rgba(0, 0, 0, 0.14), 0 6px 28px 4px rgba(0, 0, 0, 0.12);
+    }
+    
+    .example-box:active {
+        box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 20px 1px rgba(0, 0, 0, 0.14), 0 6px 28px 4px rgba(0, 0, 0, 0.12);
+    }

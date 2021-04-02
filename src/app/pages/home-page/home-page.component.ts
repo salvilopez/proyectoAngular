@@ -15,7 +15,7 @@ export class HomePageComponent implements OnInit {
   constructor( private router:Router,private authService: AuthService) { }
 
   ngOnInit(): void {
-   this.email= JSON.stringify(localStorage.getItem('username'))
+   this.email= JSON.stringify(localStorage.getItem('email'))
 
   }
 logout(){

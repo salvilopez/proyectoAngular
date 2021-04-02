@@ -3,14 +3,20 @@ viene definido por lo que devuelva el metodo del componente getColor()-->
 <div [style.background]="getColor()" class="alert">
     <div>
         <div>
+            <div> ID: {{ tarea.id }}</div>
+
+            <div>title : {{ tarea.titulo }}</div>
             <!--Mensaje de la tarea-->
-            <div>{{ tarea.titulo }}</div>
+            <div>description: {{ tarea.descripcion }}</div>
             <!--Mensaje de la tarea-->
-            <div>{{ tarea.descripcion }}</div>
+            <div>Urgency: {{ tarea.urgencia }}</div>
+            <div>Resposible: {{ tarea.responsable }}</div>
             <!--Fecha de Inicio-->
-            <div>Fecha de Inicio : {{ tarea.fechaInicio| date}}</div>
+            <div>Start date : {{ tarea.fechaInicio| date}}</div>
             <!--Fecha Final-->
-            <div>Fecha Final : {{ tarea.fechaFin| date}}</div>
+            <div>Finish Date : {{ tarea.fechaFin| date}}</div>
+            <button mat-raised-button color="primary" routerLink='/todos/{{tarea.id}}' [state]="tarea">Go to Detail</button>
+
         </div>
 
     </div>

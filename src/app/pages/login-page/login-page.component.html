@@ -1,25 +1,28 @@
-<div id="idLogin">
-    <div>
+<main>
 
-        <h1>Login Page :</h1>
-        <h4>{{ loginForm.value | json }}</h4>
+    <div id="idLogin" class="row">
+        <div class="col-4 offset-4">
 
-    </div>
-    <!-- We create our Form that will have a FormGrup assigned -->
-    <form [formGroup]="loginForm" (submit)="login()">
-        <mat-form-field>
-            <input matInput formControlName="email" placeholder="Email" />
-        </mat-form-field>
-
-        <mat-form-field>
-            <input matInput formControlName="password" placeholder="Password" />
-        </mat-form-field>
-        <div>
-            <button mat-raised-button color="primary" type="submit">Login</button>
-
-            <button mat-raised-button color="warning" [routerLink]="['/register']"> Go To Register Page</button>
+            <h1>Login Page :</h1>
+            <h4>{{ loginForm.value | json }}</h4>
 
         </div>
+        <!-- We create our Form that will have a FormGrup assigned -->
+        <form [formGroup]="loginForm" (submit)="login()">
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email" />
+            </mat-form-field>
 
-    </form>
-</div>
+            <mat-form-field>
+                <input matInput formControlName="password" placeholder="Password" />
+            </mat-form-field>
+            <div>
+                <button mat-raised-button color="primary" type="submit">Login</button>
+
+                <button mat-raised-button color="warning" [routerLink]="['/register']"> Go To Register Page</button>
+
+            </div>
+
+        </form>
+    </div>
+</main>

@@ -21,28 +21,20 @@ export class TodoComponent implements OnInit {
 
 
 
-  completar(): void{
-    //this.tareaMandada.emit(this.tarea);
-    this.tarea.completar();
-
-  }
-
-  /**
-   * Metodo get color
-   * sirve para darle color al componente
-   * @returns string
-   * El color del string
-   */
   getColor(): string {
     switch (this.tarea.urgencia) {
       case 1:
         return '#EF4816';
       case 2:
         return '#EA631F';
-        case 3:
+      case 3:
         return '#EEAE38';
+      case 4:
+        return '#E6FF33';
+      case 5:
+        return '#33F0FF';
       default:
-        return '#57B9B0';
+        return '#33F0FF';
     }
   }
 }
