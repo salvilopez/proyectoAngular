@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 
-// Contact List Mock
-import { CONTACTS } from '../mocks/contacts/contacts.mock';
 import { Contact } from '../models/contact/contact.model';
 import { ContactResponse } from '../models/contactResponse/contact-response.model';
+import { Todo } from '../models/todo/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -79,22 +77,17 @@ export class ContactService {
 
 
 
-  updateContact(updateForm: FormGroup,imagenjson :any): Observable<any> {
+  updateContact(contact:Contact): Observable<any> {
 
     let body = {
-      username:  updateForm.get('username'),
-      email:  updateForm.get('email'),
-      password:  updateForm.get('password'),
-      file:  imagenjson,
-      first_name:  updateForm.get('first_name'),
-      last_name:  updateForm.get('last_name'),
-      age:  updateForm.get('age'),
+      id:  contact.id,
+      email:  contact.email,
+      avatar:   contact.avatar,
+      first_name:   contact.first_name,
+      last_name:   contact.last_name,
 
     };
-   // console.table(body.file)
-
-    return this.http.post('https://reqres.in/api/register', body)
-
+    return this.http.put('https://reqres.in/api/users', body)
 
 
   }

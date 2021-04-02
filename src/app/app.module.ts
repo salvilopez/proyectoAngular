@@ -9,8 +9,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './views/list/list.component';
@@ -22,12 +20,12 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
-import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TodoComponent } from './components/todo/todo/todo.component';
 import { TodoDetailPageComponent } from './pages/todo-detail-page/todo-detail-page.component';
+import { ContactListPageComponent } from './pages/contact-list-page/contact-list-page.component';
+import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +37,11 @@ import { TodoDetailPageComponent } from './pages/todo-detail-page/todo-detail-pa
     LoginPageComponent,
     RegisterPageComponent,
     NotFoundPageComponent,
-    ContactsPageComponent,
     ContactDetailPageComponent,
-    TodosPageComponent,
     TodoComponent,
-    TodoDetailPageComponent
+    TodoDetailPageComponent,
+    ContactListPageComponent,
+    TodoListPageComponent
   ],
   imports: [
     BrowserModule,

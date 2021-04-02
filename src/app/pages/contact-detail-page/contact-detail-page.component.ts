@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact/contact.model';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-contact-detail-page',
   templateUrl: './contact-detail-page.component.html',
@@ -17,6 +18,7 @@ export class ContactDetailPageComponent implements OnInit {
   imagebase64: any;
   imagebase64Json: string = '';
   updateForm: FormGroup = new FormGroup({});
+  authSubscription: Subscription = new Subscription();
   /**
    * Constructor
    * @param activatedRoute --> The Active Route in that moment
@@ -63,7 +65,7 @@ export class ContactDetailPageComponent implements OnInit {
     }
 
     if(this.imagebase64!=null){
-      this.contact.avatar=this.imagebase64;
+      this.contact.avatar=this.imagebase64Json;
     }
     if(this.updateForm.value.first_name!=null){
       this.contact.first_name=this.updateForm.value.first_name;
@@ -73,6 +75,45 @@ export class ContactDetailPageComponent implements OnInit {
     }
 
     console.table(this.contact)
+
+    this.contactService.updateContact(this.contact);
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+this.authSubscription = this.contactService.updateContact(this.contact)
+.subscribe((response) => {
+  if(response.token){
+    console.log(`Token: ${response}`);
+
+  }
+},(error)=> {
+  console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
+
+  alert('Error '+error.status+' Fallo en el Login, No llego el Token de respuesta' );
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////
+
+
     this.router.navigateByUrl("/contacts/"+this.idContact, {state:this.contact});
 
 

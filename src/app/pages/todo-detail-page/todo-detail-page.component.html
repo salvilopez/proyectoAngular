@@ -1,1 +1,43 @@
-<p>todo-detail-page works!</p>
+<main>
+
+    <div>
+        <div>
+
+            <h1>Login Page :</h1>
+            <!--<h4 class="text-center">{{ loginForm.value | json }}</h4>-->
+
+        </div>
+        <!-- We create our Form that will have a FormGrup assigned -->
+
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.id" placeholder="Title" name="title" />
+        </div>
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.descripcion" placeholder="Title" name="title" />
+        </div>
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.urgencia" placeholder="Title" name="title" />
+        </div>
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.responsable" placeholder="Title" name="title" />
+        </div>
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.fechaInicio" placeholder="Title" name="title" />
+        </div>
+        <div>
+            <label for="title">Title :</label>
+            <input class="form-control" type="text" value="" [(ngModel)]="todo.fechaFin" placeholder="Title" name="title" />
+        </div>
+        <div> <button mat-raised-button color="primary" (click)="returnBack()">
+      Go Back to Todo
+    </button>
+            <button mat-raised-button color="primary" (click)="update()">
+      Actualizar
+    </button></div>
+    </div>
+</main>

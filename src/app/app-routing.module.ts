@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
-import { ContactsPageComponent } from './pages/contacts-page/contacts-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { TodosPageComponent } from './pages/todos-page/todos-page.component';
 import {TodoDetailPageComponent} from './pages/todo-detail-page/todo-detail-page.component';
-
+import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
+import {  ContactListPageComponent} from './pages/contact-list-page/contact-list-page.component';
 /**
  * App Routes that load our Pages
  */
@@ -34,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'contacts',  // http:localhost:4200/contacts
-    component: ContactsPageComponent,
+    component:ContactListPageComponent ,
     canActivate: [AuthGuard],
   },
   {
@@ -44,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: 'todos', // http:localhost:4200/todos
-    component: TodosPageComponent,
+    component: TodoListPageComponent,
     canActivate: [AuthGuard],
   },
   {

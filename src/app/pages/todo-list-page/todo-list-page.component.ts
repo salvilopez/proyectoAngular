@@ -6,11 +6,12 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 @Component({
-  selector: 'app-todos-page',
-  templateUrl: './todos-page.component.html',
-  styleUrls: ['./todos-page.component.scss'],
+  selector: 'app-todo-list-page',
+  templateUrl: './todo-list-page.component.html',
+  styleUrls: ['./todo-list-page.component.scss']
 })
-export class TodosPageComponent implements OnInit {
+export class TodoListPageComponent implements OnInit {
+
   titulo: string = '';
   descripcion: string = '';
   urgencia: number = 0;
