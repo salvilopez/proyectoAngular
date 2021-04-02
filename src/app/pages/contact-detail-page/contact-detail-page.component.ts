@@ -73,7 +73,7 @@ export class ContactDetailPageComponent implements OnInit {
     }
 
     console.table(this.contact)
-    this.router.navigate(["/contacts/"+this.idContact], {replaceUrl:true});
+    this.router.navigateByUrl("/contacts/"+this.idContact, {state:this.contact});
 
 
 
