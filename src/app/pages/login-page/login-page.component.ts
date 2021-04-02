@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     // with the Form Builder
     this.loginForm = this.formBuilder.group({
       // Here we define the FormControls with the default value
-      username: '',
+      email: '',
       password: ''
     });
 
@@ -55,8 +55,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   login(): void {
 
     // We verify the LoginForm is Valid and we can access to username and password
-    if(this.loginForm.valid && this.loginForm.value.username && this.loginForm.value.password){
-      let user: User = new User(this.loginForm.value.username, this.loginForm.value.password)
+    if(this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password){
+      let user: User = new User(this.loginForm.value.email, this.loginForm.value.password)
 
       // We verify that the user is correctly created
       // console.table(user);
@@ -70,7 +70,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
             sessionStorage.setItem('Token', response.token);
 
           //añadimos el nombre de usuario al local storage
-            localStorage.setItem('username',user.email);
+            localStorage.setItem('email',user.email);
 
 
             // We set loggedIn in our Service in order to be able to navigate to Home
@@ -79,15 +79,17 @@ export class LoginPageComponent implements OnInit, OnDestroy {
             // In this moment, the AuthGuard will be executed, as we are trying to acces to
             // HomePage that has the canActivate assigned to it
             this.router.navigate(['/home']);
-          }else{
-            alert('Error: No Token Received');
-            this.authService.setLoggedIn(false);
-            sessionStorage.removeItem('Token');
           }
+        },(error)=> {
+          console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
+
+          alert('Error '+error.status+' Fallo en el Login, No llego el Token de respuesta' );
+          this.authService.setLoggedIn(false);
+          sessionStorage.removeItem('Token');
         });
     } else {
       this.authService.setLoggedIn(false);
-      alert('You must provide a username and a valid password')
+      alert('Error de el email y password')
     }
   }
 

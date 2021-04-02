@@ -1,14 +1,14 @@
 <div id="idLogin">
     <div>
 
-        <h1>Login Form Values:</h1>
+        <h1>Login Page :</h1>
         <h4>{{ loginForm.value | json }}</h4>
 
     </div>
     <!-- We create our Form that will have a FormGrup assigned -->
     <form [formGroup]="loginForm" (submit)="login()">
         <mat-form-field>
-            <input matInput formControlName="username" placeholder="Email" />
+            <input matInput formControlName="email" placeholder="Email" />
         </mat-form-field>
 
         <mat-form-field>
@@ -17,7 +17,7 @@
         <div>
             <button mat-raised-button color="primary" type="submit">Login</button>
 
-            <button mat-raised-button color="warning" [routerLink]="['/register']"> Create an account</button>
+            <button mat-raised-button color="warning" [routerLink]="['/register']"> Go To Register Page</button>
 
         </div>
 

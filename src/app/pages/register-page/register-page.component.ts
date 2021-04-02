@@ -1,50 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user/user.model';
+import {AuthService} from 'src/app/services/auth.service'
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit {
-  imageURL: string="";
-  registerForm: FormGroup = new FormGroup({})
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  registerForm: FormGroup = new FormGroup({})
+  authSubscription: Subscription = new Subscription();
+  constructor(private formBuilder: FormBuilder, private router: Router, private auth : AuthService) { }
 
   ngOnInit(): void {
-
+// password: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$')])],
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$')])],
-      file:  ['', Validators.required], // Array of phones: [ {prefix:..., number: ...}, {prefix: ..., number: ...}]
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      age: [18, Validators.compose([Validators.required, Validators.min(18), Validators.max(99)])]
+      password: ['', Validators.compose([Validators.required])],
     });
   }
 
-  // Getter to obtain the Phone Array from the RegisterForm
-  // A Form Array wil be an Array of Phone Groups
-  get phoneArray(): FormArray{
-    return this.registerForm.get('phones') as FormArray
-  }
-  // Image Preview
-  showPreview(event:any) {
-    this.imageURL=event.target.files[0].name;
 
-    this.registerForm.setValue({file: this.imageURL})
-    console.log()
-
-  }
-
-
-  // Submit
   submitRegisterForm() {
-    console.table(this.registerForm.value);
-    this.router.navigate(['/login']);
+    if(this.registerForm.valid&&this.registerForm.value.email&&this.registerForm.value.password){
+
+      let user: User = new User(this.registerForm.value.email, this.registerForm.value.password)
+      this.authSubscription = this.auth.register(user)
+      .subscribe((response)=>{
+        if(response.token){
+        console.log(`Token: ${response.token}`);
+        // Set Token in Session Storage of our Navigator
+        sessionStorage.setItem('Token', response.token);
+
+      //añadimos el nombre de usuario al local storage
+        localStorage.setItem('username',user.email);
+        this.router.navigate(['/login']);
+      }
+
+      },(error)=> {
+        console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
+
+        alert('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' );
+        sessionStorage.removeItem('Token');
+      })
+
+
+    } else {
+      alert('Fallo en el registro , Algun campo invalido')
+    }
+
+
+  }
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 
 }

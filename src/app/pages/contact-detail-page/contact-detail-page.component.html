@@ -1,12 +1,35 @@
 <h1>Contact Details:</h1>
 
-
-
 <div class="d-flex flex-column">
-    <p>{{contact.id}}</p>
-    <p>{{contact.first_name}}</p>
-    <p>{{contact.last_name}}</p>
-    <p>{{contact.email}}</p>
-    <p>{{contact.phone}}</p>
+
+
+    <form [formGroup]="updateForm" (submit)="update()">
+        <div>
+            <img src="{{contact.avatar}}" /><input type="file" accept="image/*" (change)="showPreview($event)" formControlName="avatar" />
+        </div>
+        <div>
+            <label for="email"> Email</label>
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="{{contact.email}}" />
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <input matInput formControlName="first_name" placeholder="{{contact.first_name}}" />
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="last_name" placeholder="{{contact.last_name}}" />
+        </mat-form-field>
+
+
+        <button [disabled]="updateForm.invalid" mat-raised-button color="primary" type="submit">
+      update
+    </button>
+    </form>
+
+    <button mat-raised-button color="warning" (click)="returnBack()">
+      Go Back to Contacts
+    </button>
+
 </div>
-<button mat-raised-button color="primary" (click)="returnBack()">Go Back to Contacts</button>

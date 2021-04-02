@@ -1,15 +1,11 @@
-<h1>Register Page</h1>
+<h1>Register Page : </h1>
 
 <!-- Register Form -->
-<div>
-    <h4>Register Form Data:</h4>
-    <p>{{ registerForm.value | json }}</p>
+<div id="idRegistro">
 
-    <form [formGroup]="registerForm" (submit)="submitRegisterForm()" enctype="multipart/form-data">
-        <mat-form-field>
-            <input matInput placeholder="Username" formControlName="username" />
-        </mat-form-field>
+    <h4>{{ registerForm.value | json }}</h4>
 
+    <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
         <mat-form-field>
             <input matInput placeholder="Email" formControlName="email" />
         </mat-form-field>
@@ -17,39 +13,13 @@
         <mat-form-field>
             <input matInput placeholder="Password" formControlName="password" />
         </mat-form-field>
-
-        <mat-form-field>
-            <input matInput placeholder="First Name" formControlName="first_name" />
-        </mat-form-field>
-
-        <mat-form-field>
-            <input matInput placeholder="Last Name" formControlName="last_name" />
-        </mat-form-field>
-
-        <!-- Age number(18-99) -->
-        <mat-form-field>
-            <input type="number" matInput placeholder="Age" formControlName="age" />
-        </mat-form-field>
-
-        <!-- File []
-        <mat-form-field>
-
-            <input type="file" accept="image/*" (change)="showPreview($event)" />
-        </mat-form-field>-->
         <div>
-            <!-- Select File -->
-            <input type="file" accept="image/*" (change)="showPreview($event)" placeholder="file" formControlName="file" />
-
-
-            <p>{{imageURL}}</p>
+            <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">
+        Register
+      </button>
+            <button mat-raised-button color="warning" [routerLink]="['/login']">
+        Go To Login Page
+      </button>
         </div>
-
-        <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">
-      Register New Account
-    </button>
     </form>
-
-    <button mat-raised-button color="warning" [routerLink]="['/login']">
-    Login to my account
-  </button>
 </div>

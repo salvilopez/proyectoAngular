@@ -10,7 +10,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
   // Boolean Variable to tell the AuthGuard that the user is Logged In
   private isLoggedIn: boolean = false
 
@@ -60,4 +59,18 @@ export class AuthService {
     this.isLoggedIn = value;
   }
 
+
+
+
+  register(user:User): Observable<any> {
+
+    let body = {
+      email: user.email,
+      password: user.password,
+    };
+    console.table(body)
+    body.email="eve.holt@reqres.in";
+    body.password="pistol"
+    return this.http.post('https://reqres.in/api/register', body)
+  }
 }

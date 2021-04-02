@@ -1,33 +1,40 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router  } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from 'src/app/services/contact.service';
+import { Contact } from 'src/app/models/contact/contact.model';
 @Component({
   selector: 'app-contact-detail-page',
   templateUrl: './contact-detail-page.component.html',
-  styleUrls: ['./contact-detail-page.component.scss']
+  styleUrls: ['./contact-detail-page.component.scss'],
 })
 export class ContactDetailPageComponent implements OnInit {
-
   // ID of the Contact, that comes from the URL Parms
   idContact: string = '';
-  contact: any;
-
+  contact :any={};
+  archivoCapturado: any;
+  imagebase64: any;
+  imagebase64Json: string = '';
+  updateForm: FormGroup = new FormGroup({});
   /**
    * Constructor
    * @param activatedRoute --> The Active Route in that moment
    * @param router --> To navigate to another route
    */
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private location: Location) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private location: Location,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private contactService: ContactService
+  ) {}
 
   ngOnInit(): void {
-
-    // 1. We capture the ID from the Params
-    // this.idContact = this.activatedRoute.snapshot.params.id;
-
-    // 2.
+    console.log(this.contact);
     this.activatedRoute.params.subscribe((params) => {
       if (params.id) {
-        this.idContact = params.id
+        this.idContact = params.id;
       } else {
         alert('No Contact found');
         this.returnBack();
@@ -35,10 +42,50 @@ export class ContactDetailPageComponent implements OnInit {
     });
 
     // We obtain the contact
+
     if (this.location.getState()) {
       this.contact = this.location.getState();
     }
+    console.log('-------------------------------------');
+    console.log(this.contact as Contact);
 
+    this.updateForm = this.formBuilder.group({
+      avatar: [''],
+      email: ['', Validators.email],
+      first_name: [''],
+      last_name: [''],
+    });
+  }
+
+  update() {
+    if(this.updateForm.value.email!=null){
+      this.contact.email=this.updateForm.value.email;
+    }
+
+    if(this.imagebase64!=null){
+      this.contact.avatar=this.imagebase64;
+    }
+    if(this.updateForm.value.first_name!=null){
+      this.contact.first_name=this.updateForm.value.first_name;
+    }
+    if(this.updateForm.value.last_name!=null){
+      this.contact.last_name=this.updateForm.value.last_name;
+    }
+
+    console.table(this.contact)
+    this.router.navigate(["/contacts/"+this.idContact], {replaceUrl:true});
+
+
+
+  }
+  showPreview(event: any) {
+    this.archivoCapturado = event.target.files[0];
+    this.contactService
+      .extraerBase64(this.archivoCapturado)
+      .then((imagen: any) => {
+        this.imagebase64 = imagen.base;
+        this.contact.avatar = imagen.base;
+      });
   }
 
   returnBack() {
@@ -46,7 +93,6 @@ export class ContactDetailPageComponent implements OnInit {
     // this.router.navigate(['/contacts']);
     // 2.
     this.location.back();
+
   }
-
-
 }

@@ -34,9 +34,9 @@ export class ListComponent implements OnInit, OnDestroy {
     //   });
 
     // Observable Call
-    this.listSubscription = this.contactService.getAllContacts().subscribe((response: Contact[]) => {
+    /*this.listSubscription = this.contactService.getAllContacts().subscribe((response: Contact[]) => {
       this.contactList = response;
-    });
+    });*/
 
   }
 
@@ -46,7 +46,7 @@ export class ListComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy(){
     // Unsubscribe of all subscriptions
-    this.listSubscription.unsubscribe();
+   // this.listSubscription.unsubscribe();
   }
 
 }

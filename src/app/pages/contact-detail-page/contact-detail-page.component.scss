@@ -4,31 +4,27 @@ body {
     font-family: 'Roboto', sans-serif
 }
 
-.card {
-    background-color: skyblue;
-    width: 350px;
-    border-radius: 20px
+div form {
+    display: flex;
+    flex-direction: column;
 }
 
-.heading {
-    font-weight: 700
+div form div {
+    display: flex;
+    flex-direction: column;
 }
 
-.hour {
-    margin-top: 1px;
-    color: blue;
-    font-size: 12px
+div form div img {
+    width: 200px;
+    height: 150px;
 }
 
-.ratings i {
-    color: aqua;
+div form div * {
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
-.btn {
-    border-radius: 15px !important
-}
-
-.line-color {
-    color: blue;
-    height: 3px
+div form div img {
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
