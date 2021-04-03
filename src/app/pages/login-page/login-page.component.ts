@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 // Angular Reactive Forms
 import { FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
-
+import {MatSnackBar} from "@angular/material/snack-bar";
 // RXJS Imports
 import { Subscription } from 'rxjs';
 
@@ -29,21 +29,17 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   // AuthSubscription
   authSubscription: Subscription = new Subscription();
 
-  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private authService: AuthService, private formBuilder: FormBuilder,    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    // Before the Login Component Renders, we create our LoginForm
-    // with the Form Builder
+
     this.loginForm = this.formBuilder.group({
-      // Here we define the FormControls with the default value
+
       email: '',
       password: ''
     });
 
     // ? To see the Login Form Values Change, We create a Listener
-    // this.loginForm.valueChanges.subscribe(
-    //   console.table
-    // );
 
   }
 
@@ -54,46 +50,41 @@ export class LoginPageComponent implements OnInit, OnDestroy {
    */
   login(): void {
 
-    // We verify the LoginForm is Valid and we can access to username and password
     if(this.loginForm.valid && this.loginForm.value.email && this.loginForm.value.password){
       let user: User = new User(this.loginForm.value.email, this.loginForm.value.password)
 
-      // We verify that the user is correctly created
-      // console.table(user);
-
-      // We call the Auth Service to login the user
       this.authSubscription = this.authService.login(user)
         .subscribe((response) => {
           if(response.token){
-            console.log(`Token: ${response.token}`);
-            // Set Token in Session Storage of our Navigator
+            this.snackBar.open("Login realizado con exito",`Token: ${response.token}`,{
+              duration: 2000,
+              horizontalPosition: "center",
+              verticalPosition: "top",
+             })
             sessionStorage.setItem('Token', response.token);
-
-          //añadimos el nombre de usuario al local storage
             localStorage.setItem('email',user.email);
-
-
-            // We set loggedIn in our Service in order to be able to navigate to Home
             this.authService.setLoggedIn(true);
-            // Navigation to "/Home"
-            // In this moment, the AuthGuard will be executed, as we are trying to acces to
-            // HomePage that has the canActivate assigned to it
             this.router.navigate(['/home']);
           }
         },(error)=> {
-          console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
 
-          alert('Error '+error.status+' Fallo en el Login, No llego el Token de respuesta' );
+          this.snackBar.open("Fallo en el Login, No llego el Token de respuesta","Error: "+error.status +" : "+error.message,{
+            duration: 2000,
+            horizontalPosition: "center",
+            verticalPosition: "top",
+           })
           this.authService.setLoggedIn(false);
           sessionStorage.removeItem('Token');
         });
     } else {
       this.authService.setLoggedIn(false);
-      alert('Error de el email y password')
+      this.snackBar.open("Error de el email y password","",{
+        duration: 2000,
+        horizontalPosition: "center",
+        verticalPosition: "top",
+       })
     }
   }
-
-  // We ensure our subscription disappears with the LoginComponent
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }

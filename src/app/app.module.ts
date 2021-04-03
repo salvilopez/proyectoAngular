@@ -8,6 +8,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,9 +56,11 @@ import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.com
     MatIconModule,
     MatInputModule,
     MatButtonModule,
+    MatSnackBarModule,
     NgbModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

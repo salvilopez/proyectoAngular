@@ -5,6 +5,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import {MatSnackBar} from "@angular/material/snack-bar";
 @Component({
   selector: 'app-todo-list-page',
   templateUrl: './todo-list-page.component.html',
@@ -24,7 +25,7 @@ export class TodoListPageComponent implements OnInit {
   urgencia3List: Todo[] = [];
   urgencia4List: Todo[] = [];
   urgencia5List: Todo[] = [];
-  constructor() {}
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {}
   crearTarea(): void {
@@ -49,11 +50,17 @@ export class TodoListPageComponent implements OnInit {
           this.urgencia5List.push(nuevaTarea);
           break;
         default:
+          nuevaTarea.urgencia=5
           this.urgencia5List.push(nuevaTarea);
           break;
       }
     }else{
-      alert("Por favor , Rellena los campos");
+
+      this.snackBar.open("Pro favor rellena los campos Correctamente","",{
+        duration: 2000,
+        horizontalPosition: "center",
+        verticalPosition: "top",
+       })
     }
   }
 
@@ -65,6 +72,8 @@ export class TodoListPageComponent implements OnInit {
         event.currentIndex
       );
     } else {
+
+      console.log(event)
       this.cambiarUrgenciaDrop(event);
       transferArrayItem(
         event.previousContainer.data,
@@ -77,22 +86,22 @@ export class TodoListPageComponent implements OnInit {
   cambiarUrgenciaDrop(data: any) {
     switch (data.container.id) {
       case 'urgencia1':
-        data.previousContainer.data[0].urgencia = 1;
+        data.previousContainer.data[data.previousIndex].urgencia = 1;
         break;
       case 'urgencia2':
-        data.previousContainer.data[0].urgencia = 2;
+        data.previousContainer.data[data.previousIndex].urgencia = 2;
         break;
       case 'urgencia3':
-        data.previousContainer.data[0].urgencia = 3;
+        data.previousContainer.data[data.previousIndex].urgencia = 3;
         break;
       case 'urgencia4':
-        data.previousContainer.data[0].urgencia = 4;
+        data.previousContainer.data[data.previousIndex].urgencia = 4;
         break;
       case 'urgencia5':
-        data.previousContainer.data[0].urgencia = 5;
+        data.previousContainer.data[data.previousIndex].urgencia = 5;
         break;
       default:
-        data.previousContainer.data[0].urgencia = 5;
+        data.previousContainer.data[data.previousIndex].urgencia = 5;
         break;
     }
   }

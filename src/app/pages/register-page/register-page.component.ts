@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatSnackBar} from "@angular/material/snack-bar";
+
+
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user/user.model';
 import {AuthService} from 'src/app/services/auth.service'
@@ -13,7 +16,7 @@ export class RegisterPageComponent implements OnInit {
 
   registerForm: FormGroup = new FormGroup({})
   authSubscription: Subscription = new Subscription();
-  constructor(private formBuilder: FormBuilder, private router: Router, private auth : AuthService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private auth : AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 // password: ['', Validators.compose([Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$')])],
@@ -31,8 +34,12 @@ export class RegisterPageComponent implements OnInit {
       this.authSubscription = this.auth.register(user)
       .subscribe((response)=>{
         if(response.token){
-        console.log(`Token: ${response.token}`);
-        // Set Token in Session Storage of our Navigator
+
+        this.snackBar.open("Registro realizado con exito",`Token: ${response.token}`,{
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "top",
+         })
         sessionStorage.setItem('Token', response.token);
 
       //añadimos el nombre de usuario al local storage
@@ -41,15 +48,21 @@ export class RegisterPageComponent implements OnInit {
       }
 
       },(error)=> {
-        console.log('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' )
-
-        alert('Error '+error.status+' Fallo en el registro, No llego el Token de respuesta' );
+        this.snackBar.open("Fallo en el Registro, No llego el Token de respuesta","Error: "+error.status +" : "+error.message,{
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "top",
+         })
         sessionStorage.removeItem('Token');
       })
 
 
     } else {
-      alert('Fallo en el registro , Algun campo invalido')
+      this.snackBar.open("Fallo en el registro , Algun campo invalido ","",{
+        duration: 2000,
+        horizontalPosition: "center",
+        verticalPosition: "top",
+       })
     }
 
 
