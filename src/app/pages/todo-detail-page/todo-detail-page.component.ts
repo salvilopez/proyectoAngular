@@ -14,6 +14,7 @@ export class TodoDetailPageComponent implements OnInit {
   todo:any={};
   idTodo:number=0;
   updateForm: FormGroup = new FormGroup({});
+  actuali:Boolean=false;
   constructor(private formBuilder: FormBuilder, private location: Location, private activatedRoute: ActivatedRoute,private contactService: ContactService) { }
 
   ngOnInit(): void {
@@ -27,14 +28,25 @@ export class TodoDetailPageComponent implements OnInit {
     });
 
     // We obtain the contact
+//TODOaqui hay que insertar el relleno de datos con la condicion actuali a true
+/**
+ * if(this.actuali==true){
+  this.contact.avatar= JSON.parse(this.contactResponse.avatar)
+  this.contact.first_name= this.contactResponse.first_name
+  this.contact.last_name= this.contactResponse.last_name
+  this.contact.id= this.contactResponse.id
+  this.contact.email= this.contactResponse.email}
+ *
+ */
 
-    if (this.location.getState()&&this.todo!={}) {
+
+
+
+    if (this.location.getState()&&this.actuali==false) {
       this.todo = this.location.getState();
+      this.actuali=true;
     }
-    console.log('-------------------------------------');
-    console.log(this.todo as Todo);
-    console.log(this.todo.id)
-    console.log('-------------------------------------');
+
 
 
     this.updateForm = this.formBuilder.group({
@@ -47,9 +59,7 @@ export class TodoDetailPageComponent implements OnInit {
 
   }
   returnBack() {
-    // 1.
-    // this.router.navigate(['/contacts']);
-    // 2.
+
     this.location.back();
 
   }
