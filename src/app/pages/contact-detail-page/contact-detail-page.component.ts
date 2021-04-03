@@ -24,7 +24,7 @@ export class ContactDetailPageComponent implements OnInit {
   imagebase64: any;
   imagebase64Json: string = '';
   updateForm: FormGroup = new FormGroup({});
-  authSubscription: Subscription = new Subscription();
+  contactSubscription: Subscription = new Subscription();
   actuali:Boolean=false;
   /**
    * Constructor
@@ -45,7 +45,11 @@ export class ContactDetailPageComponent implements OnInit {
       if (params.id) {
         this.idContact = params.id;
       } else {
-        alert('No Contact found');
+        this.snackBar.open("No Contact Found","",{
+          duration: 2000,
+          horizontalPosition: "center",
+          verticalPosition: "top",
+         })
         this.returnBack();
       }
     });
@@ -72,7 +76,7 @@ export class ContactDetailPageComponent implements OnInit {
   update() {
     this.location.replaceState("/contacts/"+this.contact.id);
 
-    this.authSubscription = this.contactService.updateContact(this.contact)
+    this.contactSubscription = this.contactService.updateContact(this.contact)
         .subscribe((response) => {
           this.contactResponse= response as ContactResponsePut;
             console.log( this.contactResponse)
@@ -88,7 +92,7 @@ export class ContactDetailPageComponent implements OnInit {
               verticalPosition: "top",
              })
         });
-    this.router.navigateByUrl("/contacts/"+this.idContact, {state:this.contact});
+    this.router.navigateByUrl("/contacts/"+this.idContact);
   }
 
   showPreview(event: any) {

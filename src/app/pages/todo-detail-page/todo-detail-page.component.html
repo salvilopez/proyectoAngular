@@ -10,31 +10,31 @@
         <!-- We create our Form that will have a FormGrup assigned -->
 
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.id" placeholder="Title" name="title" />
+            <label for="id">Id :</label>
+            <input class="form-control" type="text" [(ngModel)]="todo.id" placeholder="id" name="id" disabled />
         </div>
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.descripcion" placeholder="Title" name="title" />
+            <label for="descripcion">Description :</label>
+            <input class="form-control" type="text" [(ngModel)]="todo.descripcion" placeholder="descripcion" name="descripcion" />
         </div>
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.urgencia" placeholder="Title" name="title" />
+            <label for="urgencia">Urgency :</label>
+            <input class="form-control" type="number" [(ngModel)]="todo.urgencia" placeholder="urgencia" name="urgencia" />
         </div>
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.responsable" placeholder="Title" name="title" />
+            <label for="responsable">Responsable :</label>
+            <input class="form-control" type="text" [(ngModel)]="todo.responsable" placeholder="responsable" name="responsable" />
         </div>
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.fechaInicio" placeholder="Title" name="title" />
+            <label for="fechaInicio">Start Date :</label>
+            <input class="form-control" type="date" [(ngModel)]="todo.fechaInicio" placeholder="fechaInicio" name="fechaInicio" />
         </div>
         <div>
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="todo.fechaFin" placeholder="Title" name="title" />
+            <label for="title">Finish Date :</label>
+            <input class="form-control" type="date" [(ngModel)]="todo.fechaFin" placeholder="fechaFin" name="fechaFin" />
         </div>
         <div> <button mat-raised-button color="primary" (click)="returnBack()">
-      Go Back to Todo
+      Go Back to Todo List
     </button>
             <button mat-raised-button color="primary" (click)="update()">
       Actualizar
