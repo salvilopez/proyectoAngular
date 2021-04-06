@@ -1,5 +1,7 @@
-<table border="1">
-    <thead>
+<table mat-table [dataSource]="contactList">
+
+</table>
+<!--  <thead>
         <tr>
             <th>Id</th>
             <th>First Name</th>
@@ -19,5 +21,4 @@
             <td><button mat-raised-button color="primary" routerLink='/contacts/{{contact.id}}' [state]="contact">Go to Detail</button></td>
 
         </tr>
-    </tbody>
-</table>
+    </tbody>-->

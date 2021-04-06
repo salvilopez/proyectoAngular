@@ -29,6 +29,9 @@ import { TodoDetailPageComponent } from './pages/todo-detail-page/todo-detail-pa
 import { ContactListPageComponent } from './pages/contact-list-page/contact-list-page.component';
 import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
 import { ContactListComponent } from './views/contact-list/contact-list.component';
+import { ContactTableComponent } from './components/contact-table/contact-table.component';
+import { ContactService } from './services/contact.service';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +46,8 @@ import { ContactListComponent } from './views/contact-list/contact-list.componen
     TodoDetailPageComponent,
     ContactListPageComponent,
     TodoListPageComponent,
-    ContactListComponent
+    ContactListComponent,
+    ContactTableComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +68,11 @@ import { ContactListComponent } from './views/contact-list/contact-list.componen
     DragDropModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,
+    MatSortModule
+
 
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

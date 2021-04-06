@@ -1,5 +1,5 @@
 <main>
-    <div id="idRegistro">
+    <div id="registro">
         <h1>Register Page : </h1>
         <!--   <h4>{{ registerForm.value | json }}</h4>-->
         <form [formGroup]="registerForm" (submit)="submitRegisterForm()">
@@ -14,7 +14,7 @@
                 <mat-hint>Password</mat-hint>
             </mat-form-field>
             <div>
-                <button [disabled]="registerForm.invalid" mat-raised-button color="primary" type="submit">Register</button>
+                <button [disabled]="registerForm.invalid" mat-raised-button color="accent" type="submit">Register</button>
                 <button mat-raised-button color="warning" [routerLink]="['/login']">Go To Login Page</button>
             </div>
         </form>

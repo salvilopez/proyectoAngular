@@ -27,6 +27,7 @@ export class ContactListComponent implements OnInit {
     this.contactService.getAllContact().subscribe(
       (res) => {
         this.objetoRecogido = res;
+        console.log(res.data)
         this.contactList = this.objetoRecogido.data;
       },
       (err) =>
@@ -40,6 +41,7 @@ export class ContactListComponent implements OnInit {
           }
         )
     );
+    console.log(this.contactList)
     return this.contactList;
   }
 }

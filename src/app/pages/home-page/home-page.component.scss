@@ -12,3 +12,17 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
+#botonesHome {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#mainHome {
+    background-color: #8cd0e3;
+    margin: 15px;
+    padding: 15px;
+    border-radius: 15px;
+    border: aqua 2px solid;
+}
