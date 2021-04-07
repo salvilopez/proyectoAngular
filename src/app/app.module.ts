@@ -28,11 +28,9 @@ import { TodoComponent } from './components/todo/todo/todo.component';
 import { TodoDetailPageComponent } from './pages/todo-detail-page/todo-detail-page.component';
 import { ContactListPageComponent } from './pages/contact-list-page/contact-list-page.component';
 import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
-import { ContactListComponent } from './views/contact-list/contact-list.component';
 import { ContactService } from './services/contact.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { TodoListComponent } from './views/todo-list/todo-list.component';
 
 
 @NgModule({
@@ -48,10 +46,9 @@ import { TodoListComponent } from './views/todo-list/todo-list.component';
     TodoDetailPageComponent,
     ContactListPageComponent,
     TodoListPageComponent,
-    ContactListComponent,
     HeaderComponent,
     FooterComponent,
-    TodoListComponent
+
   ],
   imports: [
     BrowserModule,
