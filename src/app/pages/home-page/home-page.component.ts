@@ -18,20 +18,5 @@ export class HomePageComponent implements OnInit {
    this.email= JSON.stringify(localStorage.getItem('email'))
 
   }
-logout(){
 
-  this.snackBar.open("Ha Cerrado su Sesion correctamente","",{
-    duration: 2000,
-    horizontalPosition: "center",
-    verticalPosition: "top",
-   })
-
-
-  localStorage.removeItem('username');
-  this.authService.setLoggedIn(false);
-  sessionStorage.removeItem('Token');
-  this.router.navigate(['/login']);
-
-
-}
 }

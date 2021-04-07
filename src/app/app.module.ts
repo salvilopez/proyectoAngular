@@ -31,6 +31,8 @@ import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.com
 import { ContactListComponent } from './views/contact-list/contact-list.component';
 import { ContactTableComponent } from './components/contact-table/contact-table.component';
 import { ContactService } from './services/contact.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { ContactService } from './services/contact.service';
     ContactListPageComponent,
     TodoListPageComponent,
     ContactListComponent,
-    ContactTableComponent
+    ContactTableComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
