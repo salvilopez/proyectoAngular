@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { Contact } from '../models/contact/contact.model';
+import { TODOS } from '../mocks/todos/todos.mock';
 import { Todo } from '../models/todo/todo.model';
 
 @Injectable({
@@ -26,6 +26,14 @@ export class TodoService {
     };
     return this.http.put('https://reqres.in/api/users', body)
 
+  }
 
+
+  getAllTodos(): Observable<Todo[]> {
+    let observable = Observable.create((observer: any) => {
+      observer.next(TODOS); // Next will send values to the subscriber
+      observer.complete(); // This will close the emission of values to the subscriber
+    });
+    return observable;
   }
 }
