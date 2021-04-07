@@ -1,35 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-body {
+#detailContact {
     background-color: #eee;
-    font-family: 'Roboto', sans-serif
-}
-
-div form {
-    display: flex;
-    flex-direction: column;
-}
-
-div form div {
-    display: flex;
-    flex-direction: column;
-}
-
-div form div img {
-    width: 200px;
-    height: 150px;
-}
-
-div form div * {
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-div form div img {
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-
-.imagen {
-    width: 250px;
-    height: 150px;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
 }

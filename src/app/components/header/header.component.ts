@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,18 +11,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class HeaderComponent implements OnInit {
 
   constructor( private router:Router,private authService: AuthService,private snackBar: MatSnackBar) { }
-  logueado:boolean=false;
+  @Input() logueado:boolean=false;
   index:number=0;
 
 
   ngOnInit(): void {
-    this.logueado= this.authService.loggedIn;
-    this.index++
-    console.log(this.logueado+" "+this.index)
-    setInterval(() => {
-      this.ngOnInit();
-    }, 5000);
+
   }
+
   logout(){
 
     this.snackBar.open("Ha Cerrado su Sesion correctamente","",{

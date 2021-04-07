@@ -1,5 +1,16 @@
 header {
     background-color: #8cd0e3;
+    height: 100px;
     width: 100%;
-    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: center;
+}
+
+#imgLogin {
+    height: 75px;
+    width: 75px;
+    cursor: pointer;
+    padding-right: 25px;
 }
