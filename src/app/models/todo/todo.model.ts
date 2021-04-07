@@ -18,9 +18,4 @@ export class Todo implements ITodo {
       this.fechaInicio = fechaInicio;
       this.fechaFin = fechaFin;
     }
-
-    completar(): void {
-
-      //this.estado = !this.completada;
-    }
-}
+  }

@@ -1,10 +1,38 @@
-<h1>Todos</h1>
-<button mat-raised-button color="primary" routerLink='/home'>Go Back Home</button>
 <main>
 
-    <h1 class=" text-center">Listado de tareas</h1>
+    <div id="addTarea" class="row mb-5 mt-5">
+        <div class="col-12 text-center">
+            <h3>Añadir Tarea</h3>
+        </div>
+        <div class="col-2 text-center">
+            <label for="title">Title</label>
+            <input class="form-control input-group" type="text" value="" [(ngModel)]="titulo" placeholder="Title" name="title" />
+        </div>
+        <div class="col-2 text-center">
+            <label for="description">Description :</label>
+            <input class="form-control" type="text" [(ngModel)]="descripcion" placeholder="Description" name="description" />
+        </div>
+        <div class="col-2 text-center">
+            <label for="urgencia">Urgency</label>
+            <input class="form-control" type="number" [(ngModel)]="urgencia" placeholder="Urgency" name="urgencia" />
+        </div>
+        <div class="col-2 text-center">
+            <label for="responsible">Responsible</label>
+            <input class="form-control" type="text" [(ngModel)]="responsable" placeholder="responsible" name="responsible" />
+        </div>
+        <div class="col-2 text-center">
+            <label for="startdate">Start date</label>
+            <input class="form-control" type="date" [(ngModel)]="fechaInicio" placeholder="Start date" name="startdate" />
+        </div>
+        <div class="col-2 text-center">
+            <label for="finishdate">Finish date </label>
+            <input class="form-control" type="date" [(ngModel)]="fechaFin" placeholder="Finish date" name="finishdate" />
+        </div>
+    </div>
 
-    <div cdkDropListGroup id="listas">
+    <h1 class=" text-center col-12 mt-5 mb-5">Listado de tareas :Organizado por Urgencia(Drag and Drop)</h1>
+
+    <div cdkDropListGroup id="listas" class="col-12 d-flex flex-row">
         <div cdkDropList [cdkDropListData]="urgencia1List" class="example-list" id="urgencia1" (cdkDropListDropped)="drop($event)">
             <app-todo class="list-group-item example-box" *ngFor="let tarea of urgencia1List" [tarea]="tarea" cdkDrag></app-todo>
         </div>
@@ -21,34 +49,18 @@
             <app-todo class="list-group-item example-box" *ngFor="let tarea of urgencia5List" [tarea]="tarea" cdkDrag></app-todo>
         </div>
     </div>
-    <div id="addTarea" class="input-group offset-8 col-4 ">
-        <h2>Crearción de Nueva Tarea</h2>
-        <div>
 
-
-            <label for="title">Title :</label>
-            <input class="form-control" type="text" value="" [(ngModel)]="titulo" placeholder="Title" name="title" />
-        </div>
-        <div>
-            <label for="description">Description :</label>
-            <input class="form-control" type="text" [(ngModel)]="descripcion" placeholder="Description" name="description" />
-        </div>
-        <div>
-            <label for="urgencia">Urgency :</label>
-            <input class="form-control" type="number" [(ngModel)]="urgencia" placeholder="Urgency" name="urgencia" />
-        </div>
-        <div>
-            <label for="responsible">Responsible :</label>
-            <input class="form-control" type="text" [(ngModel)]="responsable" placeholder="responsible" name="responsible" />
-        </div>
-        <div>
-            <label for="startdate">Startdate :</label>
-            <input class="form-control" type="date" [(ngModel)]="fechaInicio" placeholder="Start date" name="startdate" />
-        </div>
-        <div>
-            <label for="finishdate">Finishdate : </label>
-            <input class="form-control" type="date" [(ngModel)]="fechaFin" placeholder="Finish date" name="finishdate" />
-        </div>
-        <button mat-raised-button color="primary" (click)="crearTarea()">Crear tarea</button>
-    </div>
 </main>
+
+
+
+
+
+
+
+
+<!--
+
+
+
+   -->

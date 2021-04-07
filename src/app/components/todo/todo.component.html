@@ -1,0 +1,22 @@
+<!--Bloque cuyo atributo de color de fondo
+viene definido por lo que devuelva el metodo del componente getColor()-->
+<div [style.background]="getColor()" class="alert">
+    <div class="row">
+        <p class="col-12 border-bottom border-top border-dark"> ID: {{ tarea.id }}</p>
+
+        <p class="col-12 border-bottom border-top border-dark">title : {{ tarea.titulo }}</p>
+        <!--Mensaje de la tarea-->
+        <p class="col-12 border-bottom border-top border-dark">description: {{ tarea.descripcion }}</p>
+        <!--Mensaje de la tarea-->
+        <p class="col-12 border-bottom border-top border-dark">Urgency: {{ tarea.urgencia }}</p>
+        <p class="col-12 border-bottom border-top border-dark">Resposible: {{ tarea.responsable }}</p>
+        <!--Fecha de Inicio-->
+        <p class="col-12 border-bottom border-top border-dark">Start date : {{ tarea.fechaInicio| date}}</p>
+        <!--Fecha Final-->
+        <p class="col-12 border-bottom border-top border-dark">Finish Date : {{ tarea.fechaFin| date}}</p>
+        <button mat-raised-button color="primary" routerLink='/todos/{{tarea.id}}' [state]="tarea">Go to Detail</button>
+
+    </div>
+
+
+</div>

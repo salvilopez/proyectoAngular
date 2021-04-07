@@ -24,13 +24,14 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { ContactDetailPageComponent } from './pages/contact-detail-page/contact-detail-page.component';
-import { TodoComponent } from './components/todo/todo/todo.component';
+import { TodoComponent } from './components/todo/todo.component';
 import { TodoDetailPageComponent } from './pages/todo-detail-page/todo-detail-page.component';
 import { ContactListPageComponent } from './pages/contact-list-page/contact-list-page.component';
 import { TodoListPageComponent } from './pages/todo-list-page/todo-list-page.component';
 import { ContactService } from './services/contact.service';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TodoService } from './services/todo.service';
 
 
 @NgModule({
@@ -73,7 +74,7 @@ import { FooterComponent } from './components/footer/footer.component';
 
 
   ],
-  providers: [ContactService],
+  providers: [ContactService,TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
