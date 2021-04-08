@@ -40,7 +40,12 @@ this.todoService.getAllTodos().subscribe((response)=>{
 })
 
   }
+  updateTarea(tareaRecibida: Todo) {
 
+    if(tareaRecibida!==null){
+      this.llenarLista(tareaRecibida)
+    }
+   }
   crearTarea(): void {
     if ( this.titulo != '' &&this.descripcion != '' && this.urgencia != 0 &&this.responsable != '') {
       let idMax =this.urgencia1List.length +this.urgencia2List.length +this.urgencia3List.length +this.urgencia4List.length + this.urgencia5List.length +1;
@@ -122,32 +127,36 @@ this.todoService.getAllTodos().subscribe((response)=>{
   cargarListas(listaT:Todo[]){
     for (let index = 0; index < listaT.length; index++) {
               let tar:Todo= listaT[index] as Todo;
+              this.llenarLista(tar)
 
-              switch (tar.urgencia) {
-                case 1:
-                  this.urgencia1List.push(tar);
-                  break;
-                case 2:
-                  this.urgencia2List.push(tar);
-                  break;
-                case 3:
-                  this.urgencia3List.push(tar);
-                  break;
-                case 4:
-                  this.urgencia4List.push(tar);
-                  break;
-                case 5:
-                  this.urgencia5List.push(tar);
-                  break;
-                default:
-                  tar.urgencia=5
-                  this.urgencia5List.push(tar);
-                  break;
-              }
 
     }
 
 
+  }
+
+  llenarLista(tar:Todo){
+    switch (tar.urgencia) {
+      case 1:
+        this.urgencia1List.push(tar);
+        break;
+      case 2:
+        this.urgencia2List.push(tar);
+        break;
+      case 3:
+        this.urgencia3List.push(tar);
+        break;
+      case 4:
+        this.urgencia4List.push(tar);
+        break;
+      case 5:
+        this.urgencia5List.push(tar);
+        break;
+      default:
+        tar.urgencia=5
+        this.urgencia5List.push(tar);
+        break;
+    }
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Todo } from 'src/app/models/todo/todo.model';
@@ -14,6 +14,7 @@ import { TodoResponse } from 'src/app/models/todoResponse/todo-response.model';
   styleUrls: ['./todo-detail-page.component.scss']
 })
 export class TodoDetailPageComponent implements OnInit {
+  @Output() tareaMandada: EventEmitter<Todo> = new EventEmitter<Todo>();
   todo:any={};
   idTodo:number=0;
   updateForm: FormGroup = new FormGroup({});
@@ -93,6 +94,9 @@ export class TodoDetailPageComponent implements OnInit {
         .subscribe((response) => {
           this.todoResponse= response as TodoResponse;
             console.log( this.todoResponse)
+//TODO -------------------------------------------
+            this.tareaMandada.emit(this.todo);
+//TODO -------------------------------------------
            this.snackBar.open("Elemento actualizado correctamente","Timestamp: "+this.todoResponse.updatedAt,{
             duration: 2000,
             horizontalPosition: "center",
