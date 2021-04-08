@@ -62,7 +62,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
               verticalPosition: "top",
              })
             sessionStorage.setItem('Token', response.token);
+            //TODO---------------------------
             localStorage.setItem('email',user.email);
+            //TODO---------------------------
             this.authService.setLoggedIn(true);
             this.router.navigate(['/home']);
           }

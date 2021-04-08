@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from 'src/app/models/todo/todo.model';
 import { TodoService } from 'src/app/services/todo.service';
+import { Location } from '@angular/common';
 import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import {MatSnackBar} from "@angular/material/snack-bar";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NavigationExtras, Router } from '@angular/router';
+import { State } from '@popperjs/core';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss']
+  styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
   titulo: string = '';
@@ -26,27 +29,79 @@ export class TodoListComponent implements OnInit {
   urgencia4List: Todo[] = [];
   urgencia5List: Todo[] = [];
 
-  constructor(private snackBar: MatSnackBar,public todoService:TodoService) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    public todoService: TodoService,
+    private router: Router,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
-this.todoService.getAllTodos().subscribe((response)=>{
-
-    let tareas:Todo[]=response as Todo[];
-    this.cargarListas(tareas);
-
-})
-
+    this.rellenarListas();
+    this.traerTareaModificada();
   }
-  updateTarea(tareaRecibida: Todo) {
 
-    if(tareaRecibida!==null){
-      this.llenarLista(tareaRecibida)
+  rellenarListas(){
+    this.todoService.getAllTodos().subscribe((response) => {
+    let tareas: Todo[] = response as Todo[];
+    this.cargarListas(tareas);
+    });
+  }
+
+  traerTareaModificada() {
+    let tareaRecibida: Todo = history.state.data as Todo;
+    if (tareaRecibida !== undefined) {
+      switch (tareaRecibida.urgencia) {
+        case 1:
+          this.encontrarTarea(this.urgencia1List, tareaRecibida);
+          break;
+        case 2:
+          this.encontrarTarea(this.urgencia2List, tareaRecibida);
+          break;
+        case 3:
+          this.encontrarTarea(this.urgencia3List, tareaRecibida);
+          break;
+        case 4:
+          this.encontrarTarea(this.urgencia4List, tareaRecibida);
+          break;
+        case 5:
+          this.encontrarTarea(this.urgencia5List, tareaRecibida);
+          break;
+        default:
+          this.encontrarTarea(this.urgencia5List, tareaRecibida);
+          break;
+      }
     }
-   }
+  }
+  encontrarTarea(lista: Todo[], objeto: Todo) {
+    for (let i = 0; i < lista.length; i++) {
+      if (lista[i].id === objeto.id) {
+        lista[i] = objeto;
+      }
+    }
+  }
   crearTarea(): void {
-    if ( this.titulo != '' &&this.descripcion != '' && this.urgencia != 0 &&this.responsable != '') {
-      let idMax =this.urgencia1List.length +this.urgencia2List.length +this.urgencia3List.length +this.urgencia4List.length + this.urgencia5List.length +1;
-      let nuevaTarea = new Todo( this.titulo,this.descripcion,  this.urgencia, this.responsable, this.fechaInicio,this.fechaFin);
+    if (
+      this.titulo != '' &&
+      this.descripcion != '' &&
+      this.urgencia != 0 &&
+      this.responsable != ''
+    ) {
+      let idMax =
+        this.urgencia1List.length +
+        this.urgencia2List.length +
+        this.urgencia3List.length +
+        this.urgencia4List.length +
+        this.urgencia5List.length +
+        1;
+      let nuevaTarea = new Todo(
+        this.titulo,
+        this.descripcion,
+        this.urgencia,
+        this.responsable,
+        this.fechaInicio,
+        this.fechaFin
+      );
       nuevaTarea.id = idMax;
       switch (nuevaTarea.urgencia) {
         case 1:
@@ -65,17 +120,16 @@ this.todoService.getAllTodos().subscribe((response)=>{
           this.urgencia5List.push(nuevaTarea);
           break;
         default:
-          nuevaTarea.urgencia=5
+          nuevaTarea.urgencia = 5;
           this.urgencia5List.push(nuevaTarea);
           break;
       }
-    }else{
-
-      this.snackBar.open("Pro favor rellena los campos Correctamente","",{
+    } else {
+      this.snackBar.open('Pro favor rellena los campos Correctamente', '', {
         duration: 2000,
-        horizontalPosition: "center",
-        verticalPosition: "top",
-       })
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
     }
   }
 
@@ -87,8 +141,7 @@ this.todoService.getAllTodos().subscribe((response)=>{
         event.currentIndex
       );
     } else {
-
-      console.log(event)
+      console.log(event);
       this.cambiarUrgenciaDrop(event);
       transferArrayItem(
         event.previousContainer.data,
@@ -121,18 +174,14 @@ this.todoService.getAllTodos().subscribe((response)=>{
     }
   }
 
-  cargarListas(listaT:Todo[]){
+  cargarListas(listaT: Todo[]) {
     for (let index = 0; index < listaT.length; index++) {
-              let tar:Todo= listaT[index] as Todo;
-              this.llenarLista(tar)
-
-
+      let tar: Todo = listaT[index] as Todo;
+      this.llenarLista(tar);
     }
-
-
   }
 
-  llenarLista(tar:Todo){
+  llenarLista(tar: Todo) {
     switch (tar.urgencia) {
       case 1:
         this.urgencia1List.push(tar);
@@ -150,11 +199,9 @@ this.todoService.getAllTodos().subscribe((response)=>{
         this.urgencia5List.push(tar);
         break;
       default:
-        tar.urgencia=5
+        tar.urgencia = 5;
         this.urgencia5List.push(tar);
         break;
     }
   }
-
-
 }

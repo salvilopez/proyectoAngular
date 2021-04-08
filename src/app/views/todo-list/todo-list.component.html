@@ -1,5 +1,4 @@
 <main>
-
     <div id="addTarea" class="row mb-5 mt-5">
         <div class="col-12 text-center">
             <h3>Añadir Tarea</h3>
@@ -29,10 +28,8 @@
             <input class="form-control" type="date" [(ngModel)]="fechaFin" placeholder="Finish date" name="finishdate" />
         </div>
     </div>
-
     <h1 class=" text-center col-12 mt-5 mb-5">Listado de tareas :Organizado por Urgencia(Drag and Drop)</h1>
-
-    <div cdkDropListGroup id="listas" class="col-12 d-flex flex-row">
+    <div cdkDropListGroup id="listas" class="col-12 d-flex flex-row mb-5">
         <div cdkDropList [cdkDropListData]="urgencia1List" class="example-list" id="urgencia1" (cdkDropListDropped)="drop($event)">
             <app-todo class="list-group-item example-box" *ngFor="let tarea of urgencia1List" [tarea]="tarea" cdkDrag></app-todo>
         </div>
@@ -49,5 +46,4 @@
             <app-todo class="list-group-item example-box" *ngFor="let tarea of urgencia5List" [tarea]="tarea" cdkDrag></app-todo>
         </div>
     </div>
-
 </main>

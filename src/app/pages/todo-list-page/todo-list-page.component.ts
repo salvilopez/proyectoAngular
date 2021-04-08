@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Location } from '@angular/common';
 
 // MDB Angular Free
 
@@ -10,6 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoListPageComponent implements OnInit {
   ngOnInit(): void {
+
+  }
+  constructor(   private location: Location){
+
+  }
+  returnBack() {
+
+    this.location.back();
 
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Todo } from 'src/app/models/todo/todo.model';
@@ -13,8 +13,7 @@ import { TodoResponse } from 'src/app/models/todoResponse/todo-response.model';
   templateUrl: './todo-detail-page.component.html',
   styleUrls: ['./todo-detail-page.component.scss']
 })
-export class TodoDetailPageComponent implements OnInit {
-  @Output() tareaMandada: EventEmitter<Todo> = new EventEmitter<Todo>();
+export class TodoDetailPageComponent implements OnInit, OnDestroy {
   todo:any={};
   idTodo:number=0;
   updateForm: FormGroup = new FormGroup({});
@@ -28,6 +27,11 @@ export class TodoDetailPageComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private todoService: TodoService) { }
+  ngOnDestroy(): void {
+
+
+
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
@@ -94,14 +98,20 @@ export class TodoDetailPageComponent implements OnInit {
         .subscribe((response) => {
           this.todoResponse= response as TodoResponse;
             console.log( this.todoResponse)
-//TODO -------------------------------------------
-            this.tareaMandada.emit(this.todo);
-//TODO -------------------------------------------
            this.snackBar.open("Elemento actualizado correctamente","Timestamp: "+this.todoResponse.updatedAt,{
             duration: 2000,
             horizontalPosition: "center",
             verticalPosition: "top",
            })
+           //TODO -------------------------------------------
+
+          this.router.navigate(['/todos'],{
+            state:{
+              key:"data",
+              data:this.todo
+            }
+          })
+          //TODO -------------------------------------------
         },(error)=> {
             this.snackBar.open("Error en el Update","Error: "+error.status +" : "+error.message,{
               duration: 2000,

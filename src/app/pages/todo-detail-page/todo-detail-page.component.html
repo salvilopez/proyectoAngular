@@ -1,14 +1,8 @@
 <main>
-
-    <div>
+    <div class="mb-5 mt-5">
         <div>
-
             <h1>Details Page :</h1>
-            <!--<h4 class="text-center">{{ loginForm.value | json }}</h4>-->
-
         </div>
-        <!-- We create our Form that will have a FormGrup assigned -->
-
         <div>
             <label for="id">Id :</label>
             <input class="form-control" type="text" [(ngModel)]="todo.id" placeholder="id" name="id" disabled />
@@ -33,11 +27,9 @@
             <label for="title">Finish Date :</label>
             <input class="form-control" type="date" [(ngModel)]="todo.fechaFin" placeholder="fechaFin" name="fechaFin" />
         </div>
-        <div> <button mat-raised-button color="primary" (click)="returnBack()">
-      Go Back to Todo List
-    </button>
-            <button mat-raised-button color="primary" (click)="update()">
-      Actualizar
-    </button></div>
+        <div class="d-flex flex-row justify-content-around mt-3">
+            <button mat-raised-button color="warning" (click)="returnBack() ">Volver Atras</button>
+            <button mat-raised-button color="accent" (click)="update()">Actualizar</button>
+        </div>
     </div>
 </main>
