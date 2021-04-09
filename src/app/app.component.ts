@@ -10,6 +10,11 @@ export class AppComponent implements DoCheck {
   logueado:boolean=false;
   index:number=0;
   constructor(private authService: AuthService) { }
+
+  /**
+   * Metodo DOcheck para espiar desde el header si el usuario esta logueado o no
+   * Metodo DoCheck()
+   */
   ngDoCheck() {
     this.logueado= this.authService.loggedIn;
   }

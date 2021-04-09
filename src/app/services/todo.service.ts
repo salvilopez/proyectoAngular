@@ -12,9 +12,12 @@ export class TodoService {
   constructor(private http: HttpClient) { }
 
 
-
+  /**
+   * Metodo para actualizar todo
+   * @param todo Al actualizar
+   * @returns Todo actualizado
+   */
   updateTodo(todo:Todo): Observable<any> {
-
     let body = {
       id:  todo.id,
       titulo:  todo.titulo,
@@ -28,7 +31,10 @@ export class TodoService {
 
   }
 
-
+/**
+ * Metodo que devuelve todos los Todo de de los mocks
+ * @returns Todo
+ */
   getAllTodos(): Observable<Todo[]> {
     let observable = Observable.create((observer: any) => {
       observer.next(TODOS); // Next will send values to the subscriber

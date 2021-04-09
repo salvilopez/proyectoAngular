@@ -41,6 +41,9 @@ export class TodoListComponent implements OnInit {
     this.traerTareaModificada();
   }
 
+  /***
+   * Rellena las litas del mock
+   */
   rellenarListas(){
     this.todoService.getAllTodos().subscribe((response) => {
     let tareas: Todo[] = response as Todo[];
@@ -48,6 +51,11 @@ export class TodoListComponent implements OnInit {
     });
   }
 
+
+
+  /**
+   * metodo que recoge la tarea modificada del state y la updata en la lista
+   */
   traerTareaModificada() {
     let tareaRecibida: Todo = history.state.data as Todo;
     if (tareaRecibida !== undefined) {
@@ -73,6 +81,12 @@ export class TodoListComponent implements OnInit {
       }
     }
   }
+
+  /**
+   * Metodo para encontrar la tarea modificada  en las listas y modificarla
+   * @param lista de la tarea
+   * @param objeto tarea a modificada
+   */
   encontrarTarea(lista: Todo[], objeto: Todo) {
     for (let i = 0; i < lista.length; i++) {
       if (lista[i].id === objeto.id) {
@@ -80,6 +94,12 @@ export class TodoListComponent implements OnInit {
       }
     }
   }
+
+
+
+  /**
+   * Metodo para crear la tarea y la carga en la lista correspondiente
+   */
   crearTarea(): void {
     if (
       this.titulo != '' &&
@@ -132,7 +152,10 @@ export class TodoListComponent implements OnInit {
       });
     }
   }
-
+/**
+ * Metodo drag and drop  para mover Todos
+ * @param event
+ */
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -151,6 +174,11 @@ export class TodoListComponent implements OnInit {
       );
     }
   }
+
+  /**
+   * Metodo del drag and drog para cambiar la urgencia al mover de lista
+   * @param data
+   */
   cambiarUrgenciaDrop(data: any) {
     switch (data.container.id) {
       case 'urgencia1':
@@ -174,6 +202,10 @@ export class TodoListComponent implements OnInit {
     }
   }
 
+  /**
+   * Metodo para cargar las listas que recogemos con las tareas del mock
+   * @param listaT Losta de Todo con los Todo del mock
+   */
   cargarListas(listaT: Todo[]) {
     for (let index = 0; index < listaT.length; index++) {
       let tar: Todo = listaT[index] as Todo;
@@ -181,26 +213,30 @@ export class TodoListComponent implements OnInit {
     }
   }
 
-  llenarLista(tar: Todo) {
-    switch (tar.urgencia) {
+  /**
+   * Metodo para organizar las tareas en la lista correspondiente
+   * @param tarea
+   */
+  llenarLista(tarea: Todo) {
+    switch (tarea.urgencia) {
       case 1:
-        this.urgencia1List.push(tar);
+        this.urgencia1List.push(tarea);
         break;
       case 2:
-        this.urgencia2List.push(tar);
+        this.urgencia2List.push(tarea);
         break;
       case 3:
-        this.urgencia3List.push(tar);
+        this.urgencia3List.push(tarea);
         break;
       case 4:
-        this.urgencia4List.push(tar);
+        this.urgencia4List.push(tarea);
         break;
       case 5:
-        this.urgencia5List.push(tar);
+        this.urgencia5List.push(tarea);
         break;
       default:
-        tar.urgencia = 5;
-        this.urgencia5List.push(tar);
+        tarea.urgencia = 5;
+        this.urgencia5List.push(tarea);
         break;
     }
   }

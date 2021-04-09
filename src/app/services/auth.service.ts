@@ -5,72 +5,55 @@ import { User } from '../models/user/user.model';
 // We import HTTP Client to perform HTTP Requests
 import { HttpClient } from '@angular/common/http';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  // Boolean Variable to tell the AuthGuard that the user is Logged In
-  private isLoggedIn: boolean = false
-
-  // We inject Http Client to the constructor of the service
-  constructor(private http: HttpClient) { }
+  private isLoggedIn: boolean = false;
+  constructor(private http: HttpClient) {}
 
   /**
-   * Login for our Contact App
-   * @param user User that's login in
-   * @return Observable<boolean>
-   */
-  // login(user: User): Observable<boolean> {
-
-  //   /**
-  //    *  We controll credentials of our user
-  //    *  we return an Observable of type boolean
-  //    *  with the use of the method 'of'
-  //   */
-  //   if (user.email === 'admin@email.com' && user.password === 'admin') {
-  //     return of(true);
-  //   } else {
-  //     return of(false);
-  //   }
-  // }
-
-  /**
-   * Login with real HTTP Request
-   * @param user User
-   * @reurn Observable<any>
+   * usuario para el login
+   * @param user Usuario para el login
+   * @returns observable el usuario con el token del login
    */
   login(user: User): Observable<any> {
     let body = {
       email: user.email,
       password: user.password,
     };
-    body.email="eve.holt@reqres.in";
-    body.password="cityslicka"
-    return this.http.post('https://reqres.in/api/login', body)
+    body.email = 'eve.holt@reqres.in';
+    body.password = 'cityslicka';
+    return this.http.post('https://reqres.in/api/login', body);
   }
 
-  // Setter and Getter of LoggedIn
+  /**
+   * Metodo getter de log
+   */
   get loggedIn() {
     return this.isLoggedIn;
   }
 
+  /**
+   * Metodo setter de log
+   */
   setLoggedIn(value: boolean) {
     this.isLoggedIn = value;
   }
 
-
-
-
-  register(user:User): Observable<any> {
-
+  /**
+   * Metodo register del usuario
+   * @param user usuario de registro
+   * @returns devuelve el usuario con el token de registro
+   */
+  register(user: User): Observable<any> {
     let body = {
       email: user.email,
       password: user.password,
     };
-    console.table(body)
-    body.email="eve.holt@reqres.in";
-    body.password="pistol"
-    return this.http.post('https://reqres.in/api/register', body)
+    console.table(body);
+    body.email = 'eve.holt@reqres.in';
+    body.password = 'pistol';
+    return this.http.post('https://reqres.in/api/register', body);
   }
 }
