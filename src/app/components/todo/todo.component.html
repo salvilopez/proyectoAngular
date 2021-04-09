@@ -14,7 +14,8 @@ viene definido por lo que devuelva el metodo del componente getColor()-->
         <p class="col-12 border-bottom border-top border-dark">Start date : {{ tarea.fechaInicio| date}}</p>
         <!--Fecha Final-->
         <p class="col-12 border-bottom border-top border-dark">Finish Date : {{ tarea.fechaFin| date}}</p>
-        <button mat-raised-button color="primary" routerLink='/todos/{{tarea.id}}' [state]="tarea">Go to Detail</button>
+        <button mat-raised-button color="warning" (click)="borrarTarea($event)">Borrar</button>
+        <button mat-raised-button color="accent" routerLink='/todos/{{tarea.id}}' [state]="tarea">Go to Detail</button>
 
     </div>
 

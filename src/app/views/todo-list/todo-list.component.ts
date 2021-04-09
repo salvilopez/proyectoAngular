@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
+
   titulo: string = '';
   descripcion: string = '';
   urgencia: number = 0;
@@ -29,7 +30,7 @@ export class TodoListComponent implements OnInit {
   urgencia3List: Todo[] = [];
   urgencia4List: Todo[] = [];
   urgencia5List: Todo[] = [];
-
+  listaCompleta: Todo[] = [];
   constructor(
     private snackBar: MatSnackBar,
     public todoService: TodoService,
@@ -47,8 +48,8 @@ export class TodoListComponent implements OnInit {
    */
   rellenarListas(){
     this.todoSubscription=this.todoService.getAllTodos().subscribe((response) => {
-    let tareas: Todo[] = response as Todo[];
-    this.cargarListas(tareas);
+      this.listaCompleta = response as Todo[];
+    this.cargarListas(this.listaCompleta);
     });
   }
 
@@ -59,44 +60,24 @@ export class TodoListComponent implements OnInit {
    */
   traerTareaModificada() {
     let tareaRecibida: Todo = history.state.data as Todo;
+
     if (tareaRecibida !== undefined) {
-      switch (tareaRecibida.urgencia) {
-        case 1:
-          this.encontrarTarea(this.urgencia1List, tareaRecibida);
-          break;
-        case 2:
-          this.encontrarTarea(this.urgencia2List, tareaRecibida);
-          break;
-        case 3:
-          this.encontrarTarea(this.urgencia3List, tareaRecibida);
-          break;
-        case 4:
-          this.encontrarTarea(this.urgencia4List, tareaRecibida);
-          break;
-        case 5:
-          this.encontrarTarea(this.urgencia5List, tareaRecibida);
-          break;
-        default:
-          this.encontrarTarea(this.urgencia5List, tareaRecibida);
-          break;
+      let   urgencaiUpdatada:number=0;
+
+      for (let index = 0; index < this.listaCompleta.length; index++) {
+        if(tareaRecibida.id === this.listaCompleta[index].id){
+          this.listaCompleta[index]=tareaRecibida;
+
+        }
       }
+      this.urgencia1List.length=0;
+      this.urgencia2List.length=0;
+      this.urgencia3List.length=0;
+      this.urgencia4List.length=0;
+      this.urgencia5List.length=0;
+     this.cargarListas(this.listaCompleta);
     }
   }
-
-  /**
-   * Metodo para encontrar la tarea modificada  en las listas y modificarla
-   * @param lista de la tarea
-   * @param objeto tarea a modificada
-   */
-  encontrarTarea(lista: Todo[], objeto: Todo) {
-    for (let i = 0; i < lista.length; i++) {
-      if (lista[i].id === objeto.id) {
-        lista[i] = objeto;
-      }
-    }
-  }
-
-
 
   /**
    * Metodo para crear la tarea y la carga en la lista correspondiente

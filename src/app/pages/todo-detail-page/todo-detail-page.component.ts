@@ -38,20 +38,6 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-
-
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.id) {
-        this.idTodo = params.id;
-      } else {
-        this.snackBar.open('No Todo Found', '', {
-          duration: 2000,
-          horizontalPosition: 'center',
-          verticalPosition: 'top',
-        });
-        this.returnBack();
-      }
-    });
     if (this.actuali == true) {
       this.todo.id = JSON.parse(this.todoResponse.id);
       this.todo.titulo = this.todoResponse.titulo;
@@ -65,6 +51,22 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
       this.todo = this.location.getState();
       this.actuali = true;
     }
+
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.id) {
+        this.idTodo = params.id;
+      } else {
+        this.snackBar.open('No Todo Found', '', {
+          duration: 2000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+        this.returnBack();
+      }
+    });
+
+
+
     this.updateForm = this.formBuilder.group({
       id: [this.todo.id],
       titulo: [this.todo.titulo],
@@ -80,7 +82,7 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
    * Metodo volver atras
    */
   returnBack() {
-    this.location.back();
+    this.router.navigateByUrl('/home');
   }
 
   /**
@@ -124,7 +126,7 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/todos/' + this.idTodo);
   }
   ngOnDestroy(): void {
-    this.todoSubscription.unsubscribe();
+   this.todoSubscription.unsubscribe();
 
   }
 }

@@ -34,4 +34,9 @@ export class TodoComponent implements OnInit {
         return '#33F0FF';
     }
   }
+
+
+  borrarTarea(event:any){
+    console.log(event)
+  }
 }
