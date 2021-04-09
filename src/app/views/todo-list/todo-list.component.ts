@@ -10,6 +10,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationExtras, Router } from '@angular/router';
 import { State } from '@popperjs/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -22,7 +23,7 @@ export class TodoListComponent implements OnInit {
   responsable: string = '';
   fechaInicio: Date = new Date();
   fechaFin: Date = new Date();
-
+  todoSubscription: Subscription = new Subscription();
   urgencia1List: Todo[] = [];
   urgencia2List: Todo[] = [];
   urgencia3List: Todo[] = [];
@@ -45,7 +46,7 @@ export class TodoListComponent implements OnInit {
    * Rellena las litas del mock
    */
   rellenarListas(){
-    this.todoService.getAllTodos().subscribe((response) => {
+    this.todoSubscription=this.todoService.getAllTodos().subscribe((response) => {
     let tareas: Todo[] = response as Todo[];
     this.cargarListas(tareas);
     });
@@ -239,5 +240,9 @@ export class TodoListComponent implements OnInit {
         this.urgencia5List.push(tarea);
         break;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.todoSubscription.unsubscribe();
   }
 }

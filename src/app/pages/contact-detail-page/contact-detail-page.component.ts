@@ -23,6 +23,7 @@ export class ContactDetailPageComponent implements OnInit {
   imagebase64Json: string = '';
   updateForm: FormGroup = new FormGroup({});
   contactSubscription: Subscription = new Subscription();
+  routerSubscription: Subscription = new Subscription();
   actuali: Boolean = false;
   /**
    * Constructor
@@ -39,7 +40,7 @@ export class ContactDetailPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
+    this.routerSubscription=this.activatedRoute.params.subscribe((params) => {
       if (params.id) {
         this.idContact = params.id;
       } else {
@@ -71,9 +72,12 @@ export class ContactDetailPageComponent implements OnInit {
     });
   }
 
+
+  /**
+   * Metodo para actualizar el contacto
+   */
   update() {
     this.location.replaceState('/contacts/' + this.contact.id);
-
     this.contactSubscription = this.contactService
       .updateContact(this.contact)
       .subscribe(
@@ -104,23 +108,37 @@ export class ContactDetailPageComponent implements OnInit {
       );
     this.router.navigateByUrl('/contacts/' + this.idContact);
   }
-
+/**
+ * Metodo para sub imagen del input y cambiarla a base64
+ * @param event
+ */
   showPreview(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
-    // opcional porque el servidor no acepta tamaño del la imagen base64
-    //  this.contact.avatar= this.archivoCapturado.name;
+   //TODO opcional porque el servidor no acepta tamaño de la imagen base64
+   //TODO(cambiar por lo comentado de abajo , si el servidor admite Base64)
+      this.contact.avatar= this.archivoCapturado.name;
 
-    //
-    this.contactService
-      .extraerBase64(this.archivoCapturado)
-      .then((imagen: any) => {
-        this.imagebase64 = imagen.base;
-        this.contact.avatar = imagen.base;
-      });
+    //TODO----------------------------------------------
+   // this.contactService
+      //.extraerBase64(this.archivoCapturado)
+    //  .then((imagen: any) => {
+     //   this.imagebase64 = imagen.base;
+     //   this.contact.avatar = imagen.base;
+    //  });
+        //TODO----------------------------------------------
   }
 
+  /**
+   * Metodo Volver atras
+   */
   returnBack() {
     this.location.back();
+  }
+
+  ngOnDestroy(): void {
+    this.contactSubscription.unsubscribe();
+    this.routerSubscription.unsubscribe();
+
   }
 }

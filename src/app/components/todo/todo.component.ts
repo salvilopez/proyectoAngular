@@ -16,11 +16,8 @@ export class TodoComponent implements OnInit {
 /**
  * Metodo completar
  * Sirve para cambiar el estado de la tarea del componente
- * llamamos al metodo de la clase "Completar()"
+ *
  */
-
-
-
   getColor(): string {
     switch (this.tarea.urgencia) {
       case 1:

@@ -35,7 +35,7 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
     private router: Router,
     private todoService: TodoService
   ) {}
-  ngOnDestroy(): void {}
+
 
   ngOnInit(): void {
 
@@ -122,5 +122,9 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
       }
     );
     this.router.navigateByUrl('/todos/' + this.idTodo);
+  }
+  ngOnDestroy(): void {
+    this.todoSubscription.unsubscribe();
+
   }
 }
