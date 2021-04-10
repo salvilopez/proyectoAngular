@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NavigationExtras, Router } from '@angular/router';
 import { State } from '@popperjs/core';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -41,7 +42,35 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.rellenarListas();
     this.traerTareaModificada();
+
   }
+  //TODO---------------------------------------
+ /* borrar(id:number){
+
+    alert(id)
+    if (event !== undefined) {
+
+
+      for (let index = 0; index < this.listaCompleta.length; index++) {
+        if(id === this.listaCompleta[index].id){
+          alert(id)
+          //this.listaCompleta.splice( index, 1 );
+
+        }
+      }
+  /*    this.urgencia1List.length=0;
+      this.urgencia2List.length=0;
+      this.urgencia3List.length=0;
+      this.urgencia4List.length=0;
+      this.urgencia5List.length=0;
+     this.cargarListas(this.listaCompleta);
+    }
+
+  }*/
+
+
+//TODO-------------------------------------------
+
 
   /***
    * Rellena las litas del mock

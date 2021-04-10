@@ -8,9 +8,8 @@ import {Todo} from 'src/app/models/todo/todo.model';
 export class TodoComponent implements OnInit {
     fe = new Date();
   @Input() tarea:Todo=new Todo("","",0,"",this.fe,this.fe);
-
+  @Output()borrarTareaEmiter = new EventEmitter<number>();
   constructor() { }
-  @Output() tareaMandada: EventEmitter<Todo> = new EventEmitter<Todo>();
   ngOnInit(): void {
   }
 /**
@@ -35,8 +34,11 @@ export class TodoComponent implements OnInit {
     }
   }
 
-
+//TODO----------------------------------------
   borrarTarea(event:any){
-    console.log(event)
+    console.log(event.currentTarget.id)
+    //this.borrarTareaEmiter.emit()
+
   }
+  //TODO----------------------------------------
 }
