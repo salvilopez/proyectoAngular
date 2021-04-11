@@ -34,11 +34,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TodoService } from './services/todo.service';
 import { TodoListComponent } from './views/todo-list/todo-list.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    ContactComponent,
     HomePageComponent,
     LoginPageComponent,
     RegisterPageComponent,
@@ -51,6 +49,7 @@ import { TodoListComponent } from './views/todo-list/todo-list.component';
     HeaderComponent,
     FooterComponent,
     TodoListComponent,
+    ContactComponent,
 
   ],
   imports: [

@@ -37,7 +37,7 @@ export class TodoComponent implements OnInit {
 //TODO----------------------------------------
   borrarTarea(event:any){
     console.log(event.currentTarget.id)
-    //this.borrarTareaEmiter.emit()
+    this.borrarTareaEmiter.emit(event.currentTarget.id)
 
   }
   //TODO----------------------------------------

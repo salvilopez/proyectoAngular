@@ -18,7 +18,6 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-
   titulo: string = '';
   descripcion: string = '';
   urgencia: number = 0;
@@ -42,47 +41,39 @@ export class TodoListComponent implements OnInit {
   ngOnInit(): void {
     this.rellenarListas();
     this.traerTareaModificada();
-
   }
-  //TODO---------------------------------------
- /* borrar(id:number){
 
-    alert(id)
-    if (event !== undefined) {
-
-
+/**
+ * Metodo para borar una tarea
+ * @param event Id de la tarea
+ */
+  borrarTarea(event: number) {
+    if (event != undefined) {
       for (let index = 0; index < this.listaCompleta.length; index++) {
-        if(id === this.listaCompleta[index].id){
-          alert(id)
-          //this.listaCompleta.splice( index, 1 );
+        if (event == this.listaCompleta[index].id)
+          this.listaCompleta.splice(index, 1);
 
-        }
       }
-  /*    this.urgencia1List.length=0;
-      this.urgencia2List.length=0;
-      this.urgencia3List.length=0;
-      this.urgencia4List.length=0;
-      this.urgencia5List.length=0;
-     this.cargarListas(this.listaCompleta);
+      this.urgencia1List.length = 0;
+      this.urgencia2List.length = 0;
+      this.urgencia3List.length = 0;
+      this.urgencia4List.length = 0;
+      this.urgencia5List.length = 0;
+      this.cargarListas(this.listaCompleta);
     }
-
-  }*/
-
-
-//TODO-------------------------------------------
-
+  }
 
   /***
    * Rellena las litas del mock
    */
-  rellenarListas(){
-    this.todoSubscription=this.todoService.getAllTodos().subscribe((response) => {
-      this.listaCompleta = response as Todo[];
-    this.cargarListas(this.listaCompleta);
-    });
+  rellenarListas() {
+    this.todoSubscription = this.todoService
+      .getAllTodos()
+      .subscribe((response) => {
+        this.listaCompleta = response as Todo[];
+        this.cargarListas(this.listaCompleta);
+      });
   }
-
-
 
   /**
    * metodo que recoge la tarea modificada del state y la updata en la lista
@@ -91,20 +82,19 @@ export class TodoListComponent implements OnInit {
     let tareaRecibida: Todo = history.state.data as Todo;
 
     if (tareaRecibida !== undefined) {
-      let   urgencaiUpdatada:number=0;
+      let urgencaiUpdatada: number = 0;
 
       for (let index = 0; index < this.listaCompleta.length; index++) {
-        if(tareaRecibida.id === this.listaCompleta[index].id){
-          this.listaCompleta[index]=tareaRecibida;
-
+        if (tareaRecibida.id === this.listaCompleta[index].id) {
+          this.listaCompleta[index] = tareaRecibida;
         }
       }
-      this.urgencia1List.length=0;
-      this.urgencia2List.length=0;
-      this.urgencia3List.length=0;
-      this.urgencia4List.length=0;
-      this.urgencia5List.length=0;
-     this.cargarListas(this.listaCompleta);
+      this.urgencia1List.length = 0;
+      this.urgencia2List.length = 0;
+      this.urgencia3List.length = 0;
+      this.urgencia4List.length = 0;
+      this.urgencia5List.length = 0;
+      this.cargarListas(this.listaCompleta);
     }
   }
 
@@ -163,10 +153,10 @@ export class TodoListComponent implements OnInit {
       });
     }
   }
-/**
- * Metodo drag and drop  para mover Todos
- * @param event
- */
+  /**
+   * Metodo drag and drop  para mover Todos
+   * @param event
+   */
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

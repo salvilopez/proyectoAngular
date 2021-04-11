@@ -38,15 +38,8 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
-    if (this.actuali == true) {
-      this.todo.id = JSON.parse(this.todoResponse.id);
-      this.todo.titulo = this.todoResponse.titulo;
-      this.todo.descripcion = this.todoResponse.descripcion;
-      this.todo.urgencia = this.todoResponse.urgencia;
-      this.todo.responsable = this.todoResponse.responsable;
-      this.todo.fechaInicio = this.todoResponse.fechaInicio;
-      this.todo.fechaFin = this.todoResponse.fechaFin;
-    }
+
+
     if (this.location.getState() && this.actuali == false) {
       this.todo = this.location.getState();
       this.actuali = true;
@@ -64,8 +57,6 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
         this.returnBack();
       }
     });
-
-
 
     this.updateForm = this.formBuilder.group({
       id: [this.todo.id],
