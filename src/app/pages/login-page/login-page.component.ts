@@ -80,7 +80,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         },
         (error) => {
           this.snackBar.open(
-            'Fallo en el Login, No llego el Token de respuesta',
+            'Fallo en el Login',
             'Error: ' + error.status + ' :  Introduce el usuario y el email correcto de https://reqres.in/api/login',
             {
               duration: 2000,
