@@ -22,8 +22,8 @@ export class AuthService {
       email: user.email,
       password: user.password,
     };
-    body.email = 'eve.holt@reqres.in';
-    body.password = 'cityslicka';
+    //body.email = 'eve.holt@reqres.in';
+    //body.password = 'cityslicka';
     return this.http.post('https://reqres.in/api/login', body);
   }
 
@@ -52,8 +52,8 @@ export class AuthService {
       password: user.password,
     };
     console.table(body);
-    body.email = 'eve.holt@reqres.in';
-    body.password = 'pistol';
+    //body.email = 'eve.holt@reqres.in';
+    //body.password = 'pistol';
     return this.http.post('https://reqres.in/api/register', body);
   }
 }

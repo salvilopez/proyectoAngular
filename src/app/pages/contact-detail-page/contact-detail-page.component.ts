@@ -115,6 +115,8 @@ export class ContactDetailPageComponent implements OnInit {
   showPreview(event: any) {
     this.archivoCapturado = event.target.files[0];
     //
+    //TODO---.- Importante de Leer ..------
+
    //TODO opcional porque el servidor no acepta tamaño de la imagen base64
    //TODO(cambiar por lo comentado de abajo , si el servidor admite Base64)
       this.contact.avatar= this.archivoCapturado.name;

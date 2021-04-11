@@ -33,7 +33,7 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
     private location: Location,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private todoService: TodoService
+    private todoService: TodoService,
   ) {}
 
 
@@ -70,10 +70,10 @@ export class TodoDetailPageComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Metodo volver atras
+   * Metodo Volver atras
    */
-  returnBack() {
-    this.router.navigateByUrl('/home');
+   returnBack() {
+    this.location.back();
   }
 
   /**

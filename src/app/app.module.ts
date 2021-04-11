@@ -55,11 +55,8 @@ import { TodoListComponent } from './views/todo-list/todo-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // We import HttpClientModule to perform http requests
     HttpClientModule,
-    // We import ReactiveFormsModule to create Advanced Forms
     ReactiveFormsModule,
-    // Angular Material Modules
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatIconModule,
@@ -72,7 +69,6 @@ import { TodoListComponent } from './views/todo-list/todo-list.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule
-
 
   ],
   providers: [ContactService,TodoService],
