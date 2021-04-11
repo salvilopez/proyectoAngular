@@ -62,7 +62,7 @@ export class RegisterPageComponent implements OnInit {
         (error) => {
           this.snackBar.open(
             'Fallo en el Registro',
-            'Error: ' + error.status + '  Introduce el usuario y el email de la Web https://reqres.in/',
+            'Error: ' + error.status + '  Introduce el usuario y el email de la Web https://reqres.in/api/register',
             {
               duration: 2000,
               horizontalPosition: 'center',
